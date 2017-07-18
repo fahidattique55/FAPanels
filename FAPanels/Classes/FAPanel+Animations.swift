@@ -13,8 +13,7 @@ import UIKit
 extension FAPanelController {
     
     
-    
-    
+
     //  Swap Center Panel
     
     internal func swapCenter(animated:Bool, FromVC fromVC: UIViewController?, ofState previousState: FAPanelVisibleState, withVC nextVC: UIViewController?){
@@ -34,34 +33,19 @@ extension FAPanelController {
                 
                 if animated {
                     
-                    let transitionOption = configs.centerPanelTransitionType.transitionOption() as! UIViewAnimationOptions
+                    let transitionOption = configs.centerPanelTransitionType.transitionOption()
                     UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: transitionOption, animations: nil, completion: nil)
                 }
             }
         }
     }
 
-
-//    open fileprivate(set) var bubble = UIView()
-//
-//    open var startingPoint = CGPoint.zero {
-//        didSet {
-//            bubble.center = startingPoint
-//        }
-//    }
-
     
-    func frameForBubble(_ originalCenter: CGPoint, size originalSize: CGSize, start: CGPoint) -> CGRect {
-        let lengthX = fmax(start.x, originalSize.width - start.x)
-        let lengthY = fmax(start.y, originalSize.height - start.y)
-        let offset = sqrt(lengthX * lengthX + lengthY * lengthY) * 2
-        let size = CGSize(width: offset, height: offset)
-        
-        return CGRect(origin: CGPoint.zero, size: size)
-    }
-
     
-
+    
+    
+    
+    
     
     
     //  Loading of panels

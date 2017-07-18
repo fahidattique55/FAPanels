@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'FAPanels'
-  s.version          = '0.1.0'
-  s.summary          = 'Swift Panels with Transitions'
+  s.version          = '0.1.1'
+  s.summary          = 'Swift Panels with Animations'
 
   s.description      = <<-DESC
 Panels support left, right and center containers. Useful to show left and right side menus
