@@ -11,9 +11,9 @@
 
 [![Swift version](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat.svg)](https://img.shields.io/badge/swift-3.0-orange.svg?style=flat.svg)
 [![Support Dependecy Manager](https://img.shields.io/badge/support-CocoaPods-red.svg?style=flat.svg)](https://img.shields.io/badge/support-CocoaPods-red.svg?style=flat.svg)
-[![Version](https://img.shields.io/cocoapods/v/FAPanel.svg?style=flat)](http://cocoapods.org/pods/FAPanel)
+[![Version](https://img.shields.io/cocoapods/v/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat.svg)](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat.svg)
-[![Platform](https://img.shields.io/cocoapods/p/FAPanel.svg?style=flat)](http://cocoapods.org/pods/FAPanel)
+[![Platform](https://img.shields.io/cocoapods/p/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
 
 
 
@@ -163,7 +163,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'FAPanel'
+pod 'FAPanels'
 end
 ```
 
@@ -418,7 +418,7 @@ panel!.center(centerNavVC)
 
 ## License
 
-FAPanel is licensed under the Apache License 2.0.
+FAPanels is licensed under the Apache License 2.0.
 
 For more details visit http://www.apache.org/licenses/LICENSE-2.0
 
