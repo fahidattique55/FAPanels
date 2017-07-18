@@ -1,7 +1,4 @@
-# FAPanel
-
-
-![Alt text](http://i.imgur.com/hsSkSb4.png "FAPanel-Image")
+![Alt text](http://i.imgur.com/i0G92dq.png "FAPanel-Image")
 
 
 <p align="center">
