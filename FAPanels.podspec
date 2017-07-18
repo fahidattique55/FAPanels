@@ -8,7 +8,7 @@ Panels support left, right and center containers. Useful to show left and right 
                        DESC
 
   s.homepage         = 'https://github.com/fahidattique55/FAPanels'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author           = { 'Fahid Attique' => 'fahidattique55@gmail.com' }
   s.source           = { :git => 'https://github.com/fahidattique55/FAPanels.git', :tag => s.version.to_s }
 
