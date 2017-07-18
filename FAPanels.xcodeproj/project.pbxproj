@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291FAD7E1F1EBC150071F0DF /* FAPaginationLayout.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 291FAD7D1F1EBC150071F0DF /* FAPaginationLayout.podspec */; };
 		293F78561EFEF2AB00D273F1 /* FAPanel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78551EFEF2AB00D273F1 /* FAPanel+Gestures.swift */; };
 		293F78581EFEF50700D273F1 /* UIViewController+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78571EFEF50700D273F1 /* UIViewController+FAPanel.swift */; };
 		293F785A1EFEF53300D273F1 /* FAPanel+KVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78591EFEF53300D273F1 /* FAPanel+KVO.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		291FAD7D1F1EBC150071F0DF /* FAPaginationLayout.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FAPaginationLayout.podspec; sourceTree = "<group>"; };
 		293F78551EFEF2AB00D273F1 /* FAPanel+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FAPanel+Gestures.swift"; sourceTree = "<group>"; };
 		293F78571EFEF50700D273F1 /* UIViewController+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+FAPanel.swift"; sourceTree = "<group>"; };
 		293F78591EFEF53300D273F1 /* FAPanel+KVO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FAPanel+KVO.swift"; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		29641F641EEC1A5400E41BA5 = {
 			isa = PBXGroup;
 			children = (
+				291FAD7D1F1EBC150071F0DF /* FAPaginationLayout.podspec */,
 				297829D01F1B9CD3007A570F /* LICENSE */,
 				297829D11F1B9CD3007A570F /* README.md */,
 				29641F6F1EEC1A5500E41BA5 /* FAPanels */,
@@ -496,6 +499,7 @@
 				2950AE461F15637100550200 /* IQKeyboardManager.bundle in Resources */,
 				297829D21F1B9CD3007A570F /* LICENSE in Resources */,
 				29B4D1721F12BF110028CB4E /* LeftMenuCell.xib in Resources */,
+				291FAD7E1F1EBC150071F0DF /* FAPaginationLayout.podspec in Resources */,
 				29641F781EEC1A5500E41BA5 /* Assets.xcassets in Resources */,
 				29641F761EEC1A5500E41BA5 /* Main.storyboard in Resources */,
 			);
