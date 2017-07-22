@@ -28,7 +28,7 @@ public class FAPanelController: UIViewController {
     }
 
 
-    public func letf( _ controller: UIViewController) -> FAPanelController {
+    public func left( _ controller: UIViewController) -> FAPanelController {
         
         leftPanelVC = controller
         return self
