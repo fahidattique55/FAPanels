@@ -31,7 +31,7 @@ class CenterVC: UIViewController {
 
     fileprivate let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
-    var pickerDataSource: [String] = ["flipFromLeft", "flipFromRight", "flipFromTop", "flipFromBottom", "curlUp", "curlDown", "crossDissolve"]
+    var pickerDataSource: [String] = ["flipFromLeft", "flipFromRight", "flipFromTop", "flipFromBottom", "curlUp", "curlDown", "crossDissolve", "moveRight", "moveLeft", "moveUp", "moveDown", "splitHorizotally", "splitVertically"]
 
     
     
@@ -96,6 +96,23 @@ class CenterVC: UIViewController {
             animOptions = .curlDown
         case 6:
             animOptions = .crossDissolve
+
+        case 7:
+            animOptions = .moveRight
+        case 8:
+            animOptions = .moveLeft
+        case 9:
+            animOptions = .moveUp
+        case 10:
+            animOptions = .moveDown
+
+            
+        case 11:
+            animOptions = .splitHorizontally
+        case 12:
+            animOptions = .splitVertically
+            
+            
         default:
             animOptions = .crossDissolve
         }

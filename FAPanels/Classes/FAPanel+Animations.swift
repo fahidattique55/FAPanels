@@ -22,24 +22,225 @@ extension FAPanelController {
             
             if nextVC != nil {
             
-                fromVC?.willMove(toParentViewController: nil)
-                fromVC?.view.removeFromSuperview()
-                fromVC?.removeFromParentViewController()
-                
-                loadCenterPanel(FromState: previousState)
-                addChildViewController(nextVC!)
-                centerPanelContainer.addSubview(nextVC!.view)
-                nextVC!.didMove(toParentViewController: self)
-                
-                if animated {
+                if !animated {
+                    swap(fromVC, ofState: previousState, withVC: nextVC)
+                }
+                else {
                     
                     let transitionOption = configs.centerPanelTransitionType.transitionOption()
-                    UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: transitionOption, animations: nil, completion: nil)
+                    
+                    if transitionOption is UIViewAnimationOptions {
+
+                        swap(fromVC, ofState: previousState, withVC: nextVC)
+                        performNativeTransition()
+                    }
+                    else {
+                        
+                        let snapshot = self.snapshot
+                        swap(fromVC, ofState: previousState, withVC: nextVC)
+
+
+                        let transOption = transitionOption as! FAPanelTransitionType
+                        
+                        switch transOption {
+                        
+                        case .moveRight:
+
+                            moveRight(snapshot)
+                            break
+
+                        case .moveLeft:
+                            moveLeft(snapshot)
+                            break
+                        
+                        case .moveUp:
+                            moveUp(snapshot)
+                            break
+                        
+                        case .moveDown:
+                            moveDown(snapshot)
+                            break
+
+                            
+                            
+                        case .splitHorizontally:
+                            splitHorizontally(snapshot)
+                            break
+
+                            
+                        case .splitVertically:
+                            splitVertically(snapshot)
+                            break
+
+                            
+                            
+                        default:
+                            return
+                        }
+                    }
                 }
+                
             }
         }
     }
 
+    
+    
+    private func swap( _ fromVC: UIViewController?, ofState previousState:FAPanelVisibleState, withVC toVC: UIViewController?) {
+        
+        fromVC?.willMove(toParentViewController: nil)
+        fromVC?.view.removeFromSuperview()
+        fromVC?.removeFromParentViewController()
+        loadCenterPanel(FromState: previousState)
+        addChildViewController(toVC!)
+        centerPanelContainer.addSubview(toVC!.view)
+        toVC!.didMove(toParentViewController: self)
+    }
+    
+    
+    
+    private func performNativeTransition() {
+        
+        let transitionOption = configs.centerPanelTransitionType.transitionOption() as! UIViewAnimationOptions
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: transitionOption, animations: nil, completion: nil)
+    }
+    
+
+    private func moveRight( _ snapShot: UIImage) {
+        
+        let snapShotView = UIImageView(frame: view.frame)
+        snapShotView.image = snapShot
+        view.addSubview(snapShotView)
+
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var origin = snapShotView.frame.origin
+            origin.x = snapShotView.frame.size.width
+            snapShotView.frame.origin = origin
+            
+        }, completion: { (finished) in
+            
+            snapShotView.removeFromSuperview()
+        })
+    }
+
+    
+    private func moveLeft( _ snapShot: UIImage) {
+        
+        let snapShotView = UIImageView(frame: view.frame)
+        snapShotView.image = snapShot
+        view.addSubview(snapShotView)
+
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var origin = snapShotView.frame.origin
+            origin.x = -snapShotView.frame.size.width
+            snapShotView.frame.origin = origin
+            
+        }, completion: { (finished) in
+            
+            snapShotView.removeFromSuperview()
+        })
+    }
+
+    
+    private func moveUp( _ snapShot: UIImage) {
+        
+        let snapShotView = UIImageView(frame: view.frame)
+        snapShotView.image = snapShot
+        view.addSubview(snapShotView)
+        
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var origin = snapShotView.frame.origin
+            origin.y = -snapShotView.frame.size.height
+            snapShotView.frame.origin = origin
+            
+        }, completion: { (finished) in
+            
+            snapShotView.removeFromSuperview()
+        })
+    }
+
+    
+    private func moveDown( _ snapShot: UIImage) {
+        
+        let snapShotView = UIImageView(frame: view.frame)
+        snapShotView.image = snapShot
+        view.addSubview(snapShotView)
+
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var origin = snapShotView.frame.origin
+            origin.y = snapShotView.frame.size.height
+            snapShotView.frame.origin = origin
+            
+        }, completion: { (finished) in
+            
+            snapShotView.removeFromSuperview()
+        })
+    }
+
+
+    private func splitHorizontally( _ snapShot: UIImage) {
+        
+        let slicedImages = snapShot.slicesWith(rows: 2, AndColumns: 1)
+
+        let leftSnapShotView  = slicedImages[0]
+        let rightSnapShotView = slicedImages[1]
+        
+        for slicedImageView in slicedImages {
+            view.addSubview(slicedImageView)
+        }
+        
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var leftSnapOrigin = leftSnapShotView.frame.origin
+            leftSnapOrigin.x = -leftSnapShotView.frame.size.width
+            leftSnapShotView.frame.origin = leftSnapOrigin
+
+            var rightSnapOrigin = rightSnapShotView.frame.origin
+            rightSnapOrigin.x = rightSnapShotView.frame.size.width*2
+            rightSnapShotView.frame.origin = rightSnapOrigin
+            
+        }, completion: { (finished) in
+            
+        })
+    }
+
+    
+    private func splitVertically( _ snapShot: UIImage) {
+        
+        let slicedImages = snapShot.slicesWith(rows: 1, AndColumns: 2)
+        
+        let topSnapShotView    = slicedImages[0]
+        let bottomSnapShotView = slicedImages[1]
+        
+        for slicedImageView in slicedImages {
+            view.addSubview(slicedImageView)
+        }
+        
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            var topSnapOrigin = topSnapShotView.frame.origin
+            topSnapOrigin.y = -topSnapShotView.frame.size.height
+            topSnapShotView.frame.origin = topSnapOrigin
+            
+            var bottomSnapOrigin = bottomSnapShotView.frame.origin
+            bottomSnapOrigin.y = bottomSnapShotView.frame.size.height*2
+            bottomSnapShotView.frame.origin = bottomSnapOrigin
+            
+        }, completion: { (finished) in
+            
+        })
+    }
+
+    
+    
+    
+    
+    
+    
     
     
     

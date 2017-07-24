@@ -48,6 +48,8 @@
 		29B4D1711F12BF110028CB4E /* LeftMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4D16F1F12BF110028CB4E /* LeftMenuCell.swift */; };
 		29B4D1721F12BF110028CB4E /* LeftMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B4D1701F12BF110028CB4E /* LeftMenuCell.xib */; };
 		29B4D1741F12C6050028CB4E /* CenterVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4D1731F12C6050028CB4E /* CenterVC2.swift */; };
+		29B771111F267F7A0055EF9D /* UIView+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */; };
+		29B771131F269DEF0055EF9D /* UIImage+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +118,8 @@
 		29B4D16F1F12BF110028CB4E /* LeftMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuCell.swift; sourceTree = "<group>"; };
 		29B4D1701F12BF110028CB4E /* LeftMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuCell.xib; sourceTree = "<group>"; };
 		29B4D1731F12C6050028CB4E /* CenterVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterVC2.swift; sourceTree = "<group>"; };
+		29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FAPanel.swift"; sourceTree = "<group>"; };
+		29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FAPanel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +280,8 @@
 				293F785B1EFEF55900D273F1 /* FAPanel+InterfaceRotation.swift */,
 				293F78591EFEF53300D273F1 /* FAPanel+KVO.swift */,
 				293F78571EFEF50700D273F1 /* UIViewController+FAPanel.swift */,
+				29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */,
+				29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -535,7 +541,9 @@
 				2950AE421F15637100550200 /* IQPreviousNextView.swift in Sources */,
 				293F78561EFEF2AB00D273F1 /* FAPanel+Gestures.swift in Sources */,
 				293F78601EFEF5CB00D273F1 /* FAPanel+Animations.swift in Sources */,
+				29B771131F269DEF0055EF9D /* UIImage+FAPanel.swift in Sources */,
 				2950AE391F15637100550200 /* IQUIView+Hierarchy.swift in Sources */,
+				29B771111F267F7A0055EF9D /* UIView+FAPanel.swift in Sources */,
 				2964818D1EF471FF00BD2813 /* LeftMenuVC.swift in Sources */,
 				2950AE371F15637100550200 /* IQUIScrollView+Additions.swift in Sources */,
 				2950AE401F15637100550200 /* IQTextView.swift in Sources */,

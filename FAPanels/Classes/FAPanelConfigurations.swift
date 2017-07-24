@@ -133,7 +133,7 @@ public struct FAPanelConfigurations {
     // Only Center Panel Change animation
     
     var changeCenterPanelAnimated : Bool = true
-    var centerPanelTransitionType : FAPanelTransitionType = .crossDissolve
+    var centerPanelTransitionType : FAPanelTransitionType = .splitHorizontally
     var centerPanelTransitionDuration: TimeInterval = 0.60
     
 }
@@ -158,33 +158,80 @@ public enum FAPanelTransitionType: UInt {
     curlUp,
     curlDown,
     
-    crossDissolve
+    crossDissolve,
+
+    moveRight,
+    moveLeft,
+    moveUp,
+    moveDown,
+
+    splitHorizontally,
+    splitVertically
+
     
-    
-    func transitionOption() -> UIViewAnimationOptions {
+    func transitionOption() -> Any {
         
         switch self {
             
+            
         case .flipFromLeft:
-            return .transitionFlipFromLeft
+            return UIViewAnimationOptions.transitionFlipFromLeft
             
         case .flipFromRight:
-            return .transitionFlipFromRight
+            return UIViewAnimationOptions.transitionFlipFromRight
             
         case .flipFromTop:
-            return .transitionFlipFromTop
+            return UIViewAnimationOptions.transitionFlipFromTop
             
         case .flipFromBottom:
-            return .transitionFlipFromBottom
+            return UIViewAnimationOptions.transitionFlipFromBottom
+            
+            
+            
+            
             
         case .curlUp:
-            return .transitionCurlUp
+            return UIViewAnimationOptions.transitionCurlUp
             
         case .curlDown:
-            return .transitionCurlDown
+            return UIViewAnimationOptions.transitionCurlDown
+            
+            
+            
+            
             
         case .crossDissolve:
-            return .transitionCrossDissolve
+            return UIViewAnimationOptions.transitionCrossDissolve
+            
+            
+            
+            
+            
+        case .moveRight:
+            return FAPanelTransitionType.moveRight
+
+        case .moveLeft:
+            return FAPanelTransitionType.moveLeft
+
+        case .moveUp:
+            return FAPanelTransitionType.moveUp
+
+        case .moveDown:
+            return FAPanelTransitionType.moveDown
+
+            
+            
+            
+            
+            
+        case .splitHorizontally:
+            return FAPanelTransitionType.splitHorizontally
+
+        case .splitVertically:
+            return FAPanelTransitionType.splitVertically
+         
+            
+            
         }
     }
 }

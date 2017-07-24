@@ -61,7 +61,33 @@ public extension UIViewController {
         return root != nil
     }
     
+    
+    
+    
+    
+    
+    
+
+    //  Snapshot of ViewController (View + Navigation bar)
+
+    var snapshot: UIImage {
+        
+        let screenRect: CGRect = UIScreen.main.bounds
+        UIGraphicsBeginImageContext(screenRect.size)
+
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        UIColor.black.set()
+        context.fill(screenRect);
+        
+        let window: UIWindow = UIApplication.shared.keyWindow!
+        window.layer.render(in: context)
+
+        let snapshot: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return snapshot
+    }
+    
+    
+
 }
-
-
-
