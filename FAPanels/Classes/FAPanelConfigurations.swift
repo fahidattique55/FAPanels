@@ -133,8 +133,8 @@ public struct FAPanelConfigurations {
     // Only Center Panel Change animation
     
     var changeCenterPanelAnimated : Bool = true
-    var centerPanelTransitionType : FAPanelTransitionType = .splitHorizontally
-    var centerPanelTransitionDuration: TimeInterval = 0.60
+    var centerPanelTransitionType : FAPanelTransitionType = .boxFade
+    var centerPanelTransitionDuration: TimeInterval = 0.80
     
 }
 
@@ -166,7 +166,12 @@ public enum FAPanelTransitionType: UInt {
     moveDown,
 
     splitHorizontally,
-    splitVertically
+    splitVertically,
+
+    
+    dumpFall,
+    
+    boxFade
 
     
     func transitionOption() -> Any {
@@ -230,7 +235,17 @@ public enum FAPanelTransitionType: UInt {
         case .splitVertically:
             return FAPanelTransitionType.splitVertically
          
+
+
+        
+        case .dumpFall:
+            return FAPanelTransitionType.dumpFall
+
             
+            
+        case .boxFade:
+            return FAPanelTransitionType.boxFade
+
             
         }
     }

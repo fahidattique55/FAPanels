@@ -41,6 +41,7 @@
 		296481851EF471D400BD2813 /* CenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296481831EF471D400BD2813 /* CenterVC.swift */; };
 		296481891EF471ED00BD2813 /* RightMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296481871EF471ED00BD2813 /* RightMenuVC.swift */; };
 		2964818D1EF471FF00BD2813 /* LeftMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964818B1EF471FF00BD2813 /* LeftMenuVC.swift */; };
+		297458281F29092C00C617D5 /* Collection+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297458271F29092C00C617D5 /* Collection+FAPanel.swift */; };
 		297829D21F1B9CD3007A570F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 297829D01F1B9CD3007A570F /* LICENSE */; };
 		297829D31F1B9CD3007A570F /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 297829D11F1B9CD3007A570F /* README.md */; };
 		29925D8E1F13BC0C009C0795 /* RightMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29925D8C1F13BC0C009C0795 /* RightMenuCell.swift */; };
@@ -111,6 +112,7 @@
 		296481831EF471D400BD2813 /* CenterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterVC.swift; sourceTree = "<group>"; };
 		296481871EF471ED00BD2813 /* RightMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuVC.swift; sourceTree = "<group>"; };
 		2964818B1EF471FF00BD2813 /* LeftMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuVC.swift; sourceTree = "<group>"; };
+		297458271F29092C00C617D5 /* Collection+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+FAPanel.swift"; sourceTree = "<group>"; };
 		297829D01F1B9CD3007A570F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		297829D11F1B9CD3007A570F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		29925D8C1F13BC0C009C0795 /* RightMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuCell.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				293F78571EFEF50700D273F1 /* UIViewController+FAPanel.swift */,
 				29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */,
 				29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */,
+				297458271F29092C00C617D5 /* Collection+FAPanel.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				293F785C1EFEF55900D273F1 /* FAPanel+InterfaceRotation.swift in Sources */,
 				293F78581EFEF50700D273F1 /* UIViewController+FAPanel.swift in Sources */,
 				2950AE441F15637100550200 /* IQToolbar.swift in Sources */,
+				297458281F29092C00C617D5 /* Collection+FAPanel.swift in Sources */,
 				2950AE451F15637100550200 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				296481851EF471D400BD2813 /* CenterVC.swift in Sources */,
 				2950AE3A1F15637100550200 /* IQUIViewController+Additions.swift in Sources */,
@@ -718,6 +722,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 664343KK2F;
 				INFOPLIST_FILE = FAPanels/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -731,6 +736,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 664343KK2F;
 				INFOPLIST_FILE = FAPanels/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanels;
 				PRODUCT_NAME = "$(TARGET_NAME)";

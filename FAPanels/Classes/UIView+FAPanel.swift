@@ -28,4 +28,33 @@ public extension UIView {
         
         return snapshot
     }
+    
+    
+    
+    
+
+    
+    //  Add subviews in a view
+
+    func addSubviews(_ views: [UIView]) {
+        
+        for view in views {
+            self.addSubview(view)
+        }
+    }
+
+    
+    
+    
+    
+    
+    //  Remove all from super view
+    
+    class func removeAllFromSuperview(_ views: [UIView]) {
+
+        for view in views {
+            view.removeFromSuperview()
+        }
+    }
+
 }

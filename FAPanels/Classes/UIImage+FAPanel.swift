@@ -16,21 +16,21 @@ public extension UIImage {
     
     //  Get Array of imageViews containing the sliced images as per number of rows and columns specified
     
-    func slicesWith(rows: UInt, AndColumns columns: UInt ) -> [UIImageView] {
+    func slicesWith(rows: UInt, AndColumns columns: UInt, borderWidth: CGFloat = 0.0, borderColor: UIColor = .black, alpha: CGFloat = 1.0 ) -> [UIImageView] {
         
         var slicedImageViews = [UIImageView]()
         let imageSize: CGSize = size
 
         var xPos: CGFloat = 0.0, yPos: CGFloat = 0.0
         
-        let width: CGFloat  = imageSize.width/CGFloat(rows)
-        let height: CGFloat = imageSize.height/CGFloat(columns)
+        let width: CGFloat  = imageSize.width/CGFloat(columns)
+        let height: CGFloat = imageSize.height/CGFloat(rows)
 
-        for y in 0..<columns {
+        for y in 0..<rows {
             
             xPos = 0.0
             
-            for x in 0..<rows {
+            for x in 0..<columns {
                 
                 let rect: CGRect  = CGRect(x: xPos, y: yPos, width: width, height: height)
                 let cImage: CGImage = cgImage!.cropping(to: rect)!
@@ -38,9 +38,10 @@ public extension UIImage {
                     
                 let imageView: UIImageView = UIImageView(frame: CGRect(x: CGFloat(x)*width, y: CGFloat(y)*height, width: width, height: height))
                 imageView.image = dImage
-                imageView.layer.borderColor = UIColor.clear.cgColor
-                imageView.layer.borderWidth = 0.0
-
+                imageView.layer.borderColor = borderColor.cgColor
+                imageView.layer.borderWidth = borderWidth
+                imageView.alpha = alpha
+                
                 slicedImageViews.append(imageView)
                 
                 xPos += width

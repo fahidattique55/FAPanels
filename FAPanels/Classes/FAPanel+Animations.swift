@@ -13,7 +13,7 @@ import UIKit
 extension FAPanelController {
     
     
-
+    
     //  Swap Center Panel
     
     internal func swapCenter(animated:Bool, FromVC fromVC: UIViewController?, ofState previousState: FAPanelVisibleState, withVC nextVC: UIViewController?){
@@ -21,7 +21,7 @@ extension FAPanelController {
         if fromVC != nextVC {
             
             if nextVC != nil {
-            
+                
                 if !animated {
                     swap(fromVC, ofState: previousState, withVC: nextVC)
                 }
@@ -30,7 +30,7 @@ extension FAPanelController {
                     let transitionOption = configs.centerPanelTransitionType.transitionOption()
                     
                     if transitionOption is UIViewAnimationOptions {
-
+                        
                         swap(fromVC, ofState: previousState, withVC: nextVC)
                         performNativeTransition()
                     }
@@ -38,40 +38,54 @@ extension FAPanelController {
                         
                         let snapshot = self.snapshot
                         swap(fromVC, ofState: previousState, withVC: nextVC)
-
-
+                        
+                        
                         let transOption = transitionOption as! FAPanelTransitionType
                         
                         switch transOption {
-                        
+                            
                         case .moveRight:
-
+                            
                             moveRight(snapshot)
                             break
-
+                            
                         case .moveLeft:
                             moveLeft(snapshot)
                             break
-                        
+                            
                         case .moveUp:
                             moveUp(snapshot)
                             break
-                        
+                            
                         case .moveDown:
                             moveDown(snapshot)
                             break
-
+                            
                             
                             
                         case .splitHorizontally:
                             splitHorizontally(snapshot)
                             break
-
+                            
                             
                         case .splitVertically:
                             splitVertically(snapshot)
                             break
-
+                            
+                            
+                        case .dumpFall:
+                            dumpFall(snapshot)
+                            break
+                            
+                            
+                        case .boxFade:
+                            
+                            let snapshotAfterSwap = self.snapshot
+                            
+                            boxFade(snapshot, to: snapshotAfterSwap)
+                            break
+                            
+                            
                             
                             
                         default:
@@ -83,7 +97,7 @@ extension FAPanelController {
             }
         }
     }
-
+    
     
     
     private func swap( _ fromVC: UIViewController?, ofState previousState:FAPanelVisibleState, withVC toVC: UIViewController?) {
@@ -105,13 +119,13 @@ extension FAPanelController {
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: transitionOption, animations: nil, completion: nil)
     }
     
-
+    
     private func moveRight( _ snapShot: UIImage) {
         
         let snapShotView = UIImageView(frame: view.frame)
         snapShotView.image = snapShot
         view.addSubview(snapShotView)
-
+        
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
             var origin = snapShotView.frame.origin
@@ -123,14 +137,14 @@ extension FAPanelController {
             snapShotView.removeFromSuperview()
         })
     }
-
+    
     
     private func moveLeft( _ snapShot: UIImage) {
         
         let snapShotView = UIImageView(frame: view.frame)
         snapShotView.image = snapShot
         view.addSubview(snapShotView)
-
+        
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
             var origin = snapShotView.frame.origin
@@ -142,7 +156,7 @@ extension FAPanelController {
             snapShotView.removeFromSuperview()
         })
     }
-
+    
     
     private func moveUp( _ snapShot: UIImage) {
         
@@ -161,14 +175,14 @@ extension FAPanelController {
             snapShotView.removeFromSuperview()
         })
     }
-
+    
     
     private func moveDown( _ snapShot: UIImage) {
         
         let snapShotView = UIImageView(frame: view.frame)
         snapShotView.image = snapShot
         view.addSubview(snapShotView)
-
+        
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
             var origin = snapShotView.frame.origin
@@ -180,45 +194,41 @@ extension FAPanelController {
             snapShotView.removeFromSuperview()
         })
     }
-
-
+    
+    
     private func splitHorizontally( _ snapShot: UIImage) {
         
-        let slicedImages = snapShot.slicesWith(rows: 2, AndColumns: 1)
-
+        let slicedImages = snapShot.slicesWith(rows: 1, AndColumns: 2)
+        
         let leftSnapShotView  = slicedImages[0]
         let rightSnapShotView = slicedImages[1]
         
-        for slicedImageView in slicedImages {
-            view.addSubview(slicedImageView)
-        }
+        view.addSubviews(slicedImages)
         
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
             var leftSnapOrigin = leftSnapShotView.frame.origin
             leftSnapOrigin.x = -leftSnapShotView.frame.size.width
             leftSnapShotView.frame.origin = leftSnapOrigin
-
+            
             var rightSnapOrigin = rightSnapShotView.frame.origin
             rightSnapOrigin.x = rightSnapShotView.frame.size.width*2
             rightSnapShotView.frame.origin = rightSnapOrigin
             
         }, completion: { (finished) in
             
+            UIView.removeAllFromSuperview(slicedImages)
         })
     }
-
+    
     
     private func splitVertically( _ snapShot: UIImage) {
         
-        let slicedImages = snapShot.slicesWith(rows: 1, AndColumns: 2)
-        
+        let slicedImages = snapShot.slicesWith(rows: 2, AndColumns: 1)
         let topSnapShotView    = slicedImages[0]
         let bottomSnapShotView = slicedImages[1]
         
-        for slicedImageView in slicedImages {
-            view.addSubview(slicedImageView)
-        }
+        view.addSubviews(slicedImages)
         
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
@@ -232,17 +242,114 @@ extension FAPanelController {
             
         }, completion: { (finished) in
             
+            
+            UIView.removeAllFromSuperview(slicedImages)
         })
     }
+    
+    
+    
+    
+    private func dumpFall( _ snapShot: UIImage) {
+        
+        let slicedImages = snapShot.slicesWith(rows: 17, AndColumns: 11, borderWidth: 0.5)
+        
+        view.addSubviews(slicedImages)
+        
+        let shuffledImages = slicedImages.shuffled()
+        
+        
+        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+            
+            for (index, element) in shuffledImages.enumerated() {
+                
+                var elemenOrigin = element.frame.origin
+                
+                if index % 2 == 0 {
+                    
+                    element.transform = CGAffineTransform(rotationAngle: 10.0)
+                    elemenOrigin.x = self.view.frame.size.width * 2
+                }
+                else {
+                    
+                    element.transform = CGAffineTransform(rotationAngle: -10.0)
+                    elemenOrigin.x = -self.view.frame.size.width * 2
+                }
+                
+                elemenOrigin.y = self.view.frame.size.height * 3
+                element.frame.origin = elemenOrigin
+            }
+            
+        }, completion: { (finished) in
+            
+            UIView.removeAllFromSuperview(slicedImages)
+        })
+    }
+    
+    
+    
+    
+    private func boxFade( _ snapShot: UIImage, to snapshotAfterSwap: UIImage) {
+        
+        let imageBeforeSwap = UIImageView(image: snapShot)
+        view.addSubview(imageBeforeSwap)
+        
+        
+        let slicedImages = snapshotAfterSwap.slicesWith(rows: 20, AndColumns: 11, alpha: 0.0)
+        view.addSubviews(slicedImages)
+        
+        
+        view.isUserInteractionEnabled = false
+        
+        
+        DispatchQueue.main.async {
+            
+            let serviceGroup = DispatchGroup()
+            let shuffledImages = slicedImages.shuffled()
+            var delayForOddImages  = 0.0
+            var delayForEvenImages = 0.0
+            var delay = 0.0
 
-    
-    
-    
-    
-    
-    
-    
-    
+
+            for index in 0..<shuffledImages.count {
+                
+                serviceGroup.enter()
+
+                
+                let view = shuffledImages[index]
+                view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                delayForOddImages  = (0...0.85).random()
+                delayForEvenImages = (0...0.4).random()
+                if index % 2 == 0 {
+                    delay = delayForEvenImages
+                }
+                else {
+                    delay = delayForOddImages
+                }
+                
+                
+                UIView.animate(withDuration: self.configs.centerPanelTransitionDuration, delay: TimeInterval(delay), options: .curveEaseIn, animations: {
+                    
+                    view.alpha = 1
+                    view.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    
+                }, completion: { (finished) in
+                    serviceGroup.leave()
+                })
+            }
+            
+            
+            
+            
+            
+            serviceGroup.notify(queue: DispatchQueue.main) {
+                
+                imageBeforeSwap.removeFromSuperview()
+                UIView.removeAllFromSuperview(slicedImages)
+                self.view.isUserInteractionEnabled = true
+            }
+        }
+    }
     
     
     
@@ -368,8 +475,8 @@ extension FAPanelController {
         }
         tapView = UIView()
     }
-
-
+    
+    
     private func updateCenterPanelContainer() {
         
         centerPanelContainer.frame = centeralPanelSlidingFrame
@@ -383,7 +490,7 @@ extension FAPanelController {
     
     
     
-
+    
     
     
     //  Hiding panels
@@ -415,7 +522,7 @@ extension FAPanelController {
     
     
     
-
+    
     
     //  Unloading Panels
     
@@ -428,7 +535,7 @@ extension FAPanelController {
                 }
             }
         }
-
+        
         if configs.unloadRightPanel {
             if rightPanelVC != nil {
                 if rightPanelVC!.isViewLoaded {
@@ -445,7 +552,7 @@ extension FAPanelController {
     
     
     
-
+    
     
     
     //  Layout Containers & Panels
@@ -486,9 +593,9 @@ extension FAPanelController {
                 rightPanelVC.view.frame = frame
             }
         }
-
+        
         if let leftPanelVC = self.leftPanelVC {
-
+            
             if leftPanelVC.isViewLoaded {
                 
                 var frame: CGRect  = leftPanelContainer.bounds
@@ -532,10 +639,10 @@ extension FAPanelController {
     
     
     
-
+    
     
     //  Handle Scrolling
-
+    
     
     internal func handleScrollsToTopForContainers(centerEnabled: Bool, leftEnabled:Bool, rightEnabled:Bool) {
         
@@ -576,7 +683,7 @@ extension FAPanelController {
     
     
     //  Panel Animations
-
+    
     
     internal func animateCenterPanel(shouldBounce: Bool, completion: @escaping (_ finished: Bool) -> Void) {
         
@@ -642,7 +749,7 @@ extension FAPanelController {
             }
         }
         else if state == .right {
-        
+            
             if position < -widthForRightPanelVC {
                 return 0.0
             }
@@ -654,7 +761,7 @@ extension FAPanelController {
             }
         }
         else if state == .left {
-        
+            
             if position > widthForLeftPanelVC {
                 return 0.0
             }
@@ -675,11 +782,11 @@ extension FAPanelController {
     
     
     
-
+    
     
     
     //  Handle Panning Decisions
-
+    
     
     internal func shouldCompletePanFor(movement: CGFloat) -> Bool {
         
