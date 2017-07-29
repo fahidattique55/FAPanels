@@ -18,7 +18,7 @@ public extension UIView {
 
     var snapshot: UIImage {
         
-        UIGraphicsBeginImageContext(bounds.size)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
 
         let context = UIGraphicsGetCurrentContext()
         layer.render(in: context!)
@@ -55,6 +55,23 @@ public extension UIView {
         for view in views {
             view.removeFromSuperview()
         }
+    }
+
+    
+    
+    
+    
+    
+    
+    //  Add image in a view
+    
+    func addImage(_ image: UIImage) -> UIImageView {
+        
+        let imageView = UIImageView(image: image)
+        imageView.frame = frame
+        addSubview(imageView)
+        
+        return imageView
     }
 
 }

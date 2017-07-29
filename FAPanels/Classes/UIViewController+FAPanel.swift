@@ -73,7 +73,8 @@ public extension UIViewController {
     var snapshot: UIImage {
         
         let screenRect: CGRect = UIScreen.main.bounds
-        UIGraphicsBeginImageContext(screenRect.size)
+        
+        UIGraphicsBeginImageContextWithOptions(screenRect.size, false, 0.0)
 
         let context: CGContext = UIGraphicsGetCurrentContext()!
         UIColor.black.set()

@@ -134,7 +134,7 @@ public struct FAPanelConfigurations {
     
     var changeCenterPanelAnimated : Bool = true
     var centerPanelTransitionType : FAPanelTransitionType = .boxFade
-    var centerPanelTransitionDuration: TimeInterval = 0.80
+    var centerPanelTransitionDuration: TimeInterval = 0.40
     
 }
 
@@ -246,7 +246,6 @@ public enum FAPanelTransitionType: UInt {
         case .boxFade:
             return FAPanelTransitionType.boxFade
 
-            
         }
     }
 }

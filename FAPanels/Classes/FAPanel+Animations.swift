@@ -84,8 +84,7 @@ extension FAPanelController {
                             
                             boxFade(snapshot, to: snapshotAfterSwap)
                             break
-                            
-                            
+
                             
                             
                         default:
@@ -199,13 +198,12 @@ extension FAPanelController {
     private func splitHorizontally( _ snapShot: UIImage) {
         
         let slicedImages = snapShot.slicesWith(rows: 1, AndColumns: 2)
-        
         let leftSnapShotView  = slicedImages[0]
         let rightSnapShotView = slicedImages[1]
         
         view.addSubviews(slicedImages)
         
-        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+        UIView.animate(withDuration: configs.centerPanelTransitionDuration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             
             var leftSnapOrigin = leftSnapShotView.frame.origin
             leftSnapOrigin.x = -leftSnapShotView.frame.size.width
@@ -214,11 +212,11 @@ extension FAPanelController {
             var rightSnapOrigin = rightSnapShotView.frame.origin
             rightSnapOrigin.x = rightSnapShotView.frame.size.width*2
             rightSnapShotView.frame.origin = rightSnapOrigin
-            
-        }, completion: { (finished) in
+
+        }) { (finished) in
             
             UIView.removeAllFromSuperview(slicedImages)
-        })
+        }
     }
     
     
@@ -229,8 +227,8 @@ extension FAPanelController {
         let bottomSnapShotView = slicedImages[1]
         
         view.addSubviews(slicedImages)
-        
-        UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
+
+        UIView.animate(withDuration: configs.centerPanelTransitionDuration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
             
             var topSnapOrigin = topSnapShotView.frame.origin
             topSnapOrigin.y = -topSnapShotView.frame.size.height
@@ -240,11 +238,9 @@ extension FAPanelController {
             bottomSnapOrigin.y = bottomSnapShotView.frame.size.height*2
             bottomSnapShotView.frame.origin = bottomSnapOrigin
             
-        }, completion: { (finished) in
-            
-            
+        }) { (finished) in
             UIView.removeAllFromSuperview(slicedImages)
-        })
+        }
     }
     
     
@@ -252,12 +248,19 @@ extension FAPanelController {
     
     private func dumpFall( _ snapShot: UIImage) {
         
-        let slicedImages = snapShot.slicesWith(rows: 17, AndColumns: 11, borderWidth: 0.5)
+        var rows : UInt = 17
+        var colms: UInt = 11
         
+        if UIDevice.current.orientation != .portrait {
+            colms = 17
+            rows  = 11
+        }
+
+        let slicedImages = snapShot.slicesWith(rows: rows, AndColumns: colms, borderWidth: 0.5)
         view.addSubviews(slicedImages)
         
         let shuffledImages = slicedImages.shuffled()
-        
+
         
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: [], animations: {
             
@@ -291,16 +294,19 @@ extension FAPanelController {
     
     private func boxFade( _ snapShot: UIImage, to snapshotAfterSwap: UIImage) {
         
-        let imageBeforeSwap = UIImageView(image: snapShot)
-        view.addSubview(imageBeforeSwap)
+        let imageBeforeSwap = view.addImage(snapShot)
+
+        var rows : UInt = 20
+        var colms: UInt = 11
+
+        if UIDevice.current.orientation != .portrait {
+            colms = 20
+            rows  = 11
+        }
         
-        
-        let slicedImages = snapshotAfterSwap.slicesWith(rows: 20, AndColumns: 11, alpha: 0.0)
+        let slicedImages = snapshotAfterSwap.slicesWith(rows: rows, AndColumns: colms, alpha: 0.0)
         view.addSubviews(slicedImages)
-        
-        
         view.isUserInteractionEnabled = false
-        
         
         DispatchQueue.main.async {
             
@@ -310,24 +316,22 @@ extension FAPanelController {
             var delayForEvenImages = 0.0
             var delay = 0.0
 
-
             for index in 0..<shuffledImages.count {
                 
                 serviceGroup.enter()
-
                 
                 let view = shuffledImages[index]
                 view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                delayForOddImages  = (0...0.85).random()
-                delayForEvenImages = (0...0.4).random()
+                delayForOddImages  = (0.5...3.0).random()
+                delayForEvenImages = (0.1...1.3).random()
+
                 if index % 2 == 0 {
                     delay = delayForEvenImages
                 }
                 else {
                     delay = delayForOddImages
                 }
-                
-                
+
                 UIView.animate(withDuration: self.configs.centerPanelTransitionDuration, delay: TimeInterval(delay), options: .curveEaseIn, animations: {
                     
                     view.alpha = 1
@@ -340,8 +344,6 @@ extension FAPanelController {
             
             
             
-            
-            
             serviceGroup.notify(queue: DispatchQueue.main) {
                 
                 imageBeforeSwap.removeFromSuperview()
@@ -350,6 +352,16 @@ extension FAPanelController {
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

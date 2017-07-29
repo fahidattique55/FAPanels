@@ -120,7 +120,7 @@ class CenterVC: UIViewController {
         case 14:
             animOptions = .boxFade
 
-            
+
         default:
             animOptions = .crossDissolve
         }
