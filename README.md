@@ -41,6 +41,14 @@
 - [x] Curl Up
 - [x] Curl Down
 - [x] Cross Dissolve
+- [x] Move Up 
+- [x] Move Down
+- [x] Move Left
+- [x] Move Right
+- [x] Split Horizontally 
+- [x] Split Vertically 
+- [x] Dump Fall
+- [x] Box Fade
 
 
 
