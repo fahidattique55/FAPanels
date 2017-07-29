@@ -396,10 +396,29 @@ panel!.center(centerNavVC)
 | ![](http://i.imgur.com/9Hjhthp.gif) | ![](http://i.imgur.com/BALhgmX.gif)
 
 
-| crossDissolve 
-| --- |
-| ![](http://i.imgur.com/siaRAy3.gif) |
+| crossDissolve | moveRight | 
+| --- | --- |
+| ![](http://i.imgur.com/siaRAy3.gif) |  ![](http://i.imgur.com/1o4SILl.gif)
 
+
+| moveLeft | moveUp | 
+| --- | --- |
+| ![](http://i.imgur.com/dH3HNyv.gif) |  ![](http://i.imgur.com/iENLd4n.gif)
+
+
+| moveDown | splitVertically | 
+| --- | --- |
+| ![](http://i.imgur.com/GrQH53P.gif) |  ![](http://i.imgur.com/a7FbLUX.gif)
+
+
+| splitHorizontally | dumpFall | 
+| --- | --- |
+| ![](http://i.imgur.com/gsYw0SX.gif) |  ![](http://i.imgur.com/miVZ2nB.gif)
+
+
+| boxFade | 
+| --- |
+| ![](http://i.imgur.com/TjniRC2.gif) |
 
 
 
