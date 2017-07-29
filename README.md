@@ -218,7 +218,7 @@ let centerNavVC = UINavigationController(rootViewController: centerVC)
 //  Set the Panel controllers with just two lines of code
 
 let rootController: FAPanelController = window?.rootViewController as! FAPanelController
-rootController.center(centerNavVC).letf(leftMenuVC).right(rightMenuVC)
+rootController.center(centerNavVC).left(leftMenuVC).right(rightMenuVC)
 
 ```
 
@@ -234,12 +234,12 @@ rootController.center(centerNavVC).letf(leftMenuVC).right(rightMenuVC)
 
 //  This is the code to set all panels 
 
-rootController.center(centerNavVC).letf(leftMenuVC).right(rightMenuVC)
+rootController.center(centerNavVC).left(leftMenuVC).right(rightMenuVC)
 
 
 //  Updated code which have only left and center panels 
 
-rootController.center(centerNavVC).letf(leftMenuVC)
+rootController.center(centerNavVC).left(leftMenuVC)
 
 
 //  Similarly, if left panel is not needed the remove the left panel code.
@@ -273,7 +273,7 @@ rootController.configs.minEdgeForLeftPanel  = 70
 rootController.configs.minEdgeForRightPanel = 70
 
 
-rootController.center(centerNavVC).letf(leftMenuVC).right(rightMenuVC)
+rootController.center(centerNavVC).left(leftMenuVC).right(rightMenuVC)
 
 
 //  For more configurations and their details, Please have a look into ``` FAPanelConfigurations.swift ``` file 
