@@ -28,113 +28,117 @@ public enum FAPanelVisibleState:Int {
 
 // Configurations for Panels
 
-public struct FAPanelConfigurations {
+public class FAPanelConfigurations: NSObject {
     
+    
+    override public init() {
+        super.init()
+    }
     
     // overrides leftPanelGapPercentage
     
-    var leftPanelWidth : CGFloat = 280
-    var rightPanelWidth: CGFloat = 280
+    public var leftPanelWidth : CGFloat = 280
+    public var rightPanelWidth: CGFloat = 280
     
-    var leftPanelGapPercentage : CGFloat = 0.8
-    var rightPanelGapPercentage: CGFloat = 0.8
+    public var leftPanelGapPercentage : CGFloat = 0.8
+    public var rightPanelGapPercentage: CGFloat = 0.8
     
     
     
     
     // resizes all subviews as well
     
-    var resizeLeftPanel : Bool = false
-    var resizeRightPanel: Bool = false
+    public var resizeLeftPanel : Bool = false
+    public var resizeRightPanel: Bool = false
     
     
     
     // Adds push animation on side panels
     
-    var pusheSidePanels: Bool = false
+    public var pusheSidePanels: Bool = false
     
     
     
     
     // Bounce effects on panel animations
     
-    var bounceOnLeftPanelOpen  : Bool = true
-    var bounceOnRightPanelOpen : Bool = true
-    var bounceOnCenterPanelOpen: Bool = true
+    public var bounceOnLeftPanelOpen  : Bool = true
+    public var bounceOnRightPanelOpen : Bool = true
+    public var bounceOnCenterPanelOpen: Bool = true
     
     
-    var bounceOnLeftPanelClose   : Bool = false
-    var bounceOnRightPanelClose  : Bool = false
-    var bounceOnCenterPanelChange: Bool = true
+    public var bounceOnLeftPanelClose   : Bool = false
+    public var bounceOnRightPanelClose  : Bool = false
+    public var bounceOnCenterPanelChange: Bool = true
     
-    var bouncePercentage : CGFloat = 0.075
-    var bounceDuration   : CGFloat = 0.1
+    public var bouncePercentage : CGFloat = 0.075
+    public var bounceDuration   : CGFloat = 0.1
     
     
     
     
     //  Panning Gesture
     
-    var canRecognizePanGesture: Bool = true
+    public var canRecognizePanGesture: Bool = true
     
-    var panFromEdge          : Bool = false
-    var minEdgeForLeftPanel  : CGFloat = 70.0
-    var minEdgeForRightPanel : CGFloat = 70.0
+    public var panFromEdge          : Bool = false
+    public var minEdgeForLeftPanel  : CGFloat = 70.0
+    public var minEdgeForRightPanel : CGFloat = 70.0
     
-    var canLeftSwipe : Bool = true
-    var canRightSwipe: Bool = true
+    public var canLeftSwipe : Bool = true
+    public var canRightSwipe: Bool = true
     
     
     
     
     // restricts panning gesture to work for top VC of Navigation/TabBar Controller
     
-    var restrictPanningToTopVC: Bool = true
+    public var restrictPanningToTopVC: Bool = true
     
     
     
     
     // Handles the interface auto rotation of visible panel
     
-    var handleAutoRotation: Bool = true
+    public var handleAutoRotation: Bool = true
     
     
     
     
     // Applies corner radius to panels
     
-    var cornerRadius: CGFloat = 0.0
+    public var cornerRadius: CGFloat = 0.0
     
     
     
     
     // Remove panels from super view when possible
     
-    var unloadRightPanel: Bool = false
-    var unloadLeftPanel : Bool = false
+    public var unloadRightPanel: Bool = false
+    public var unloadLeftPanel : Bool = false
     
     
     
     
     // Max animation duration for animations of side panels
     
-    var maxAnimDuration  : CGFloat = 0.15
+    public var maxAnimDuration  : CGFloat = 0.15
     
     
     
     
     // percentage of screen's width to the centerPanel.view must move for panGesture to succeed
     
-    var minMovePercentage: CGFloat = 0.15
+    public var minMovePercentage: CGFloat = 0.15
     
     
     
     
     // Only Center Panel Change animation
     
-    var changeCenterPanelAnimated : Bool = true
-    var centerPanelTransitionType : FAPanelTransitionType = .boxFade
-    var centerPanelTransitionDuration: TimeInterval = 0.40
+    public var changeCenterPanelAnimated : Bool = true
+    public var centerPanelTransitionType : FAPanelTransitionType = .boxFade
+    public var centerPanelTransitionDuration: TimeInterval = 0.40
     
 }
 
