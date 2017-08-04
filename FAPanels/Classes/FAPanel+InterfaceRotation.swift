@@ -17,7 +17,7 @@ extension FAPanelController {
     
     //  Handling Interface Rotations
 
-    override public var shouldAutorotate: Bool {
+    override open var shouldAutorotate: Bool {
         get {
             guard let visiblePanel = visiblePanelVC else { return true }
             
@@ -31,7 +31,7 @@ extension FAPanelController {
     }
     
     
-    override public func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+    override open func willAnimateRotation(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         
         centerPanelContainer.frame = updateCenterPanelSlidingFrame()
         layoutSideContainers(withDuration: duration, animated: true)
@@ -46,7 +46,7 @@ extension FAPanelController {
     }
     
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         
         switch state {
         case .center:

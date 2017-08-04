@@ -18,7 +18,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     //  GestureRecognizer Delegate
     
     
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if gestureRecognizer.view == tapView {
             return true

@@ -10,51 +10,51 @@ import UIKit
 
 
 
-public class FAPanelController: UIViewController {
+open class FAPanelController: UIViewController {
 
     
     
     
-    //  MARK:- Public
+    //  MARK:- Open
     
     
-    public var configs = FAPanelConfigurations()
+    open var configs = FAPanelConfigurations()
 
 
-    public func center( _ controller: UIViewController) -> FAPanelController {
+    open func center( _ controller: UIViewController) -> FAPanelController {
         
         centerPanelVC = controller
         return self
     }
 
 
-    public func left( _ controller: UIViewController) -> FAPanelController {
+    open func left( _ controller: UIViewController) -> FAPanelController {
         
         leftPanelVC = controller
         return self
     }
 
     
-    public func right( _ controller: UIViewController) -> FAPanelController {
+    open func right( _ controller: UIViewController) -> FAPanelController {
         
         rightPanelVC = controller
         return self
     }
 
 
-    public func openLeft(animated:Bool) {
+    open func openLeft(animated:Bool) {
 
         openLeft(animated: animated, shouldBounce: configs.bounceOnLeftPanelOpen)
     }
     
     
-    public func openRight(animated:Bool) {
+    open func openRight(animated:Bool) {
         
         openRight(animated: animated, shouldBounce: configs.bounceOnRightPanelOpen)
     }
     
     
-    public func openCenter(animated:Bool) {     //  Can be used for the same menu option selected
+    open func openCenter(animated:Bool) {     //  Can be used for the same menu option selected
         
         if centerPanelHidden {
             centerPanelHidden = false
@@ -82,14 +82,14 @@ public class FAPanelController: UIViewController {
     }
     
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
 
         super.viewDidLoad()
         viewConfigurations()
     }
 
     
-    override public func viewWillAppear(_ animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
         layoutSideContainers(withDuration: 0.0, animated: false)
@@ -99,7 +99,7 @@ public class FAPanelController: UIViewController {
     }
 
     
-    override public func viewDidAppear(_ animated: Bool) {
+    override open func viewDidAppear(_ animated: Bool) {
     
         super.viewDidAppear(animated)
         _ = updateCenterPanelSlidingFrame()

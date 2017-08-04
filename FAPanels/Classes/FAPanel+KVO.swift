@@ -16,7 +16,7 @@ extension FAPanelController {
 
     //  Handling Key Value Observer
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if context == &FAPanelController.kvoContext {
             if keyPath == keyPathOfView {
