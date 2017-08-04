@@ -51,6 +51,23 @@
 		29B4D1741F12C6050028CB4E /* CenterVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4D1731F12C6050028CB4E /* CenterVC2.swift */; };
 		29B771111F267F7A0055EF9D /* UIView+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */; };
 		29B771131F269DEF0055EF9D /* UIImage+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */; };
+		29FED1901F34DD3E00D46E75 /* FAPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1871F34DD3D00D46E75 /* FAPanel.framework */; };
+		29FED1971F34DD3E00D46E75 /* FAPanelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FED1961F34DD3E00D46E75 /* FAPanelTests.swift */; };
+		29FED1991F34DD3E00D46E75 /* FAPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FED1891F34DD3D00D46E75 /* FAPanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29FED19C1F34DD3E00D46E75 /* FAPanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1871F34DD3D00D46E75 /* FAPanel.framework */; };
+		29FED19D1F34DD3E00D46E75 /* FAPanel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1871F34DD3D00D46E75 /* FAPanel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		29FED1A51F34DD7000D46E75 /* FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29641FA81EEC5DA200E41BA5 /* FAPanel.swift */; };
+		29FED1A61F34DD7000D46E75 /* FAPanelConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F785D1EFEF59A00D273F1 /* FAPanelConfigurations.swift */; };
+		29FED1A71F34DD7000D46E75 /* FAPanel+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F785F1EFEF5CB00D273F1 /* FAPanel+Animations.swift */; };
+		29FED1A81F34DD7000D46E75 /* FAPanel+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78551EFEF2AB00D273F1 /* FAPanel+Gestures.swift */; };
+		29FED1A91F34DD7000D46E75 /* FAPanel+InterfaceRotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F785B1EFEF55900D273F1 /* FAPanel+InterfaceRotation.swift */; };
+		29FED1AA1F34DD7000D46E75 /* FAPanel+KVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78591EFEF53300D273F1 /* FAPanel+KVO.swift */; };
+		29FED1AB1F34DD7000D46E75 /* UIViewController+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F78571EFEF50700D273F1 /* UIViewController+FAPanel.swift */; };
+		29FED1AC1F34DD7000D46E75 /* UIView+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */; };
+		29FED1AD1F34DD7000D46E75 /* UIImage+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */; };
+		29FED1AE1F34DD7000D46E75 /* Collection+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297458271F29092C00C617D5 /* Collection+FAPanel.swift */; };
+		29FED1B11F34DDB500D46E75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1B01F34DDB500D46E75 /* UIKit.framework */; };
+		29FED1B31F34DDC300D46E75 /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1B21F34DDC300D46E75 /* GameplayKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +85,42 @@
 			remoteGlobalIDString = 29641F6C1EEC1A5500E41BA5;
 			remoteInfo = FAPanels;
 		};
+		29FED1911F34DD3E00D46E75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29641F651EEC1A5400E41BA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29FED1861F34DD3D00D46E75;
+			remoteInfo = FAPanel;
+		};
+		29FED1931F34DD3E00D46E75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29641F651EEC1A5400E41BA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29641F6C1EEC1A5500E41BA5;
+			remoteInfo = FAPanels;
+		};
+		29FED19A1F34DD3E00D46E75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29641F651EEC1A5400E41BA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29FED1861F34DD3D00D46E75;
+			remoteInfo = FAPanel;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		29FED1A31F34DD3E00D46E75 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				29FED19D1F34DD3E00D46E75 /* FAPanel.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		291FAD7D1F1EBC150071F0DF /* FAPanels.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FAPanels.podspec; sourceTree = "<group>"; };
@@ -122,6 +174,14 @@
 		29B4D1731F12C6050028CB4E /* CenterVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterVC2.swift; sourceTree = "<group>"; };
 		29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+FAPanel.swift"; sourceTree = "<group>"; };
 		29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FAPanel.swift"; sourceTree = "<group>"; };
+		29FED1871F34DD3D00D46E75 /* FAPanel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FAPanel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29FED1891F34DD3D00D46E75 /* FAPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FAPanel.h; sourceTree = "<group>"; };
+		29FED18A1F34DD3D00D46E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29FED18F1F34DD3D00D46E75 /* FAPanelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FAPanelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		29FED1961F34DD3E00D46E75 /* FAPanelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAPanelTests.swift; sourceTree = "<group>"; };
+		29FED1981F34DD3E00D46E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29FED1B01F34DDB500D46E75 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		29FED1B21F34DDC300D46E75 /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = System/Library/Frameworks/GameplayKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FED19C1F34DD3E00D46E75 /* FAPanel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +204,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29FED1831F34DD3D00D46E75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FED1B31F34DDC300D46E75 /* GameplayKit.framework in Frameworks */,
+				29FED1B11F34DDB500D46E75 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29FED18C1F34DD3D00D46E75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FED1901F34DD3E00D46E75 /* FAPanel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +309,10 @@
 				29641F6F1EEC1A5500E41BA5 /* FAPanels */,
 				29641F841EEC1A5500E41BA5 /* FAPanelsTests */,
 				29641F8F1EEC1A5500E41BA5 /* FAPanelsUITests */,
+				29FED1881F34DD3D00D46E75 /* FAPanel */,
+				29FED1951F34DD3E00D46E75 /* FAPanelTests */,
 				29641F6E1EEC1A5500E41BA5 /* Products */,
+				29FED1AF1F34DDB500D46E75 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,6 +322,8 @@
 				29641F6D1EEC1A5500E41BA5 /* FAPanels.app */,
 				29641F811EEC1A5500E41BA5 /* FAPanelsTests.xctest */,
 				29641F8C1EEC1A5500E41BA5 /* FAPanelsUITests.xctest */,
+				29FED1871F34DD3D00D46E75 /* FAPanel.framework */,
+				29FED18F1F34DD3D00D46E75 /* FAPanelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,7 +473,45 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		29FED1881F34DD3D00D46E75 /* FAPanel */ = {
+			isa = PBXGroup;
+			children = (
+				29FED1891F34DD3D00D46E75 /* FAPanel.h */,
+				29FED18A1F34DD3D00D46E75 /* Info.plist */,
+			);
+			path = FAPanel;
+			sourceTree = "<group>";
+		};
+		29FED1951F34DD3E00D46E75 /* FAPanelTests */ = {
+			isa = PBXGroup;
+			children = (
+				29FED1961F34DD3E00D46E75 /* FAPanelTests.swift */,
+				29FED1981F34DD3E00D46E75 /* Info.plist */,
+			);
+			path = FAPanelTests;
+			sourceTree = "<group>";
+		};
+		29FED1AF1F34DDB500D46E75 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29FED1B21F34DDC300D46E75 /* GameplayKit.framework */,
+				29FED1B01F34DDB500D46E75 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		29FED1841F34DD3D00D46E75 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FED1991F34DD3E00D46E75 /* FAPanel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		29641F6C1EEC1A5500E41BA5 /* FAPanels */ = {
@@ -400,10 +521,12 @@
 				29641F691EEC1A5500E41BA5 /* Sources */,
 				29641F6A1EEC1A5500E41BA5 /* Frameworks */,
 				29641F6B1EEC1A5500E41BA5 /* Resources */,
+				29FED1A31F34DD3E00D46E75 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				29FED19B1F34DD3E00D46E75 /* PBXTargetDependency */,
 			);
 			name = FAPanels;
 			productName = FAPanels;
@@ -446,6 +569,43 @@
 			productReference = 29641F8C1EEC1A5500E41BA5 /* FAPanelsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		29FED1861F34DD3D00D46E75 /* FAPanel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29FED1A21F34DD3E00D46E75 /* Build configuration list for PBXNativeTarget "FAPanel" */;
+			buildPhases = (
+				29FED1821F34DD3D00D46E75 /* Sources */,
+				29FED1831F34DD3D00D46E75 /* Frameworks */,
+				29FED1841F34DD3D00D46E75 /* Headers */,
+				29FED1851F34DD3D00D46E75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FAPanel;
+			productName = FAPanel;
+			productReference = 29FED1871F34DD3D00D46E75 /* FAPanel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		29FED18E1F34DD3D00D46E75 /* FAPanelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29FED1A41F34DD3E00D46E75 /* Build configuration list for PBXNativeTarget "FAPanelTests" */;
+			buildPhases = (
+				29FED18B1F34DD3D00D46E75 /* Sources */,
+				29FED18C1F34DD3D00D46E75 /* Frameworks */,
+				29FED18D1F34DD3D00D46E75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				29FED1921F34DD3E00D46E75 /* PBXTargetDependency */,
+				29FED1941F34DD3E00D46E75 /* PBXTargetDependency */,
+			);
+			name = FAPanelTests;
+			productName = FAPanelTests;
+			productReference = 29FED18F1F34DD3D00D46E75 /* FAPanelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -476,6 +636,17 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 29641F6C1EEC1A5500E41BA5;
 					};
+					29FED1861F34DD3D00D46E75 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 664343KK2F;
+						ProvisioningStyle = Automatic;
+					};
+					29FED18E1F34DD3D00D46E75 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 664343KK2F;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 29641F6C1EEC1A5500E41BA5;
+					};
 				};
 			};
 			buildConfigurationList = 29641F681EEC1A5400E41BA5 /* Build configuration list for PBXProject "FAPanels" */;
@@ -494,6 +665,8 @@
 				29641F6C1EEC1A5500E41BA5 /* FAPanels */,
 				29641F801EEC1A5500E41BA5 /* FAPanelsTests */,
 				29641F8B1EEC1A5500E41BA5 /* FAPanelsUITests */,
+				29FED1861F34DD3D00D46E75 /* FAPanel */,
+				29FED18E1F34DD3D00D46E75 /* FAPanelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -522,6 +695,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		29641F8A1EEC1A5500E41BA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29FED1851F34DD3D00D46E75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29FED18D1F34DD3D00D46E75 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -588,6 +775,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29FED1821F34DD3D00D46E75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FED1A51F34DD7000D46E75 /* FAPanel.swift in Sources */,
+				29FED1A61F34DD7000D46E75 /* FAPanelConfigurations.swift in Sources */,
+				29FED1A71F34DD7000D46E75 /* FAPanel+Animations.swift in Sources */,
+				29FED1A81F34DD7000D46E75 /* FAPanel+Gestures.swift in Sources */,
+				29FED1A91F34DD7000D46E75 /* FAPanel+InterfaceRotation.swift in Sources */,
+				29FED1AA1F34DD7000D46E75 /* FAPanel+KVO.swift in Sources */,
+				29FED1AB1F34DD7000D46E75 /* UIViewController+FAPanel.swift in Sources */,
+				29FED1AC1F34DD7000D46E75 /* UIView+FAPanel.swift in Sources */,
+				29FED1AD1F34DD7000D46E75 /* UIImage+FAPanel.swift in Sources */,
+				29FED1AE1F34DD7000D46E75 /* Collection+FAPanel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29FED18B1F34DD3D00D46E75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29FED1971F34DD3E00D46E75 /* FAPanelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -600,6 +812,21 @@
 			isa = PBXTargetDependency;
 			target = 29641F6C1EEC1A5500E41BA5 /* FAPanels */;
 			targetProxy = 29641F8D1EEC1A5500E41BA5 /* PBXContainerItemProxy */;
+		};
+		29FED1921F34DD3E00D46E75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29FED1861F34DD3D00D46E75 /* FAPanel */;
+			targetProxy = 29FED1911F34DD3E00D46E75 /* PBXContainerItemProxy */;
+		};
+		29FED1941F34DD3E00D46E75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29641F6C1EEC1A5500E41BA5 /* FAPanels */;
+			targetProxy = 29FED1931F34DD3E00D46E75 /* PBXContainerItemProxy */;
+		};
+		29FED19B1F34DD3E00D46E75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29FED1861F34DD3D00D46E75 /* FAPanel */;
+			targetProxy = 29FED19A1F34DD3E00D46E75 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -719,6 +946,7 @@
 		29641F961EEC1A5500E41BA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 664343KK2F;
 				INFOPLIST_FILE = FAPanels/Info.plist;
@@ -733,6 +961,7 @@
 		29641F971EEC1A5500E41BA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 664343KK2F;
 				INFOPLIST_FILE = FAPanels/Info.plist;
@@ -802,6 +1031,82 @@
 			};
 			name = Release;
 		};
+		29FED19E1F34DD3E00D46E75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 664343KK2F;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FAPanel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		29FED19F1F34DD3E00D46E75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 664343KK2F;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FAPanel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		29FED1A01F34DD3E00D46E75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 664343KK2F;
+				INFOPLIST_FILE = FAPanelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FAPanels.app/FAPanels";
+			};
+			name = Debug;
+		};
+		29FED1A11F34DD3E00D46E75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 664343KK2F;
+				INFOPLIST_FILE = FAPanelTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fahid.FAPanelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FAPanels.app/FAPanels";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -840,6 +1145,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		29FED1A21F34DD3E00D46E75 /* Build configuration list for PBXNativeTarget "FAPanel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29FED19E1F34DD3E00D46E75 /* Debug */,
+				29FED19F1F34DD3E00D46E75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		29FED1A41F34DD3E00D46E75 /* Build configuration list for PBXNativeTarget "FAPanelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29FED1A01F34DD3E00D46E75 /* Debug */,
+				29FED1A11F34DD3E00D46E75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
