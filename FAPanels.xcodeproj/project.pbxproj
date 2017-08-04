@@ -66,8 +66,6 @@
 		29FED1AC1F34DD7000D46E75 /* UIView+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771101F267F7A0055EF9D /* UIView+FAPanel.swift */; };
 		29FED1AD1F34DD7000D46E75 /* UIImage+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B771121F269DEF0055EF9D /* UIImage+FAPanel.swift */; };
 		29FED1AE1F34DD7000D46E75 /* Collection+FAPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297458271F29092C00C617D5 /* Collection+FAPanel.swift */; };
-		29FED1B11F34DDB500D46E75 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1B01F34DDB500D46E75 /* UIKit.framework */; };
-		29FED1B31F34DDC300D46E75 /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29FED1B21F34DDC300D46E75 /* GameplayKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,8 +209,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29FED1B31F34DDC300D46E75 /* GameplayKit.framework in Frameworks */,
-				29FED1B11F34DDB500D46E75 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
