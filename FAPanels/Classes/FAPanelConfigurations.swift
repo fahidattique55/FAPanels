@@ -28,8 +28,13 @@ public enum FAPanelVisibleState: Int {
 
 // Configurations for Panels
 
-open class FAPanelConfigurations {
+open class FAPanelConfigurations: NSObject {
     
+    
+    public override init() {
+        super.init()
+    }
+
     
     // overrides leftPanelGapPercentage
     
