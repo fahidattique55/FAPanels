@@ -194,13 +194,13 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate FAPanels into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
 github "fahidattique55/FAPanels" >= 0.2.0
 ```
 
-Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project.
+Run `carthage update` to build the framework and drag the built `FAPanels.framework` into your Xcode project.
 
 
 
