@@ -16,14 +16,14 @@ extension FAPanelController {
     
     //  Swap Center Panel
     
-    internal func swapCenter(animated:Bool, FromVC fromVC: UIViewController?, ofState previousState: FAPanelVisibleState, withVC nextVC: UIViewController?){
+    internal func swapCenter(animated:Bool, FromVC fromVC: UIViewController?, withVC nextVC: UIViewController?){
         
         if fromVC != nextVC {
             
             if nextVC != nil {
                 
                 if !animated {
-                    swap(fromVC, ofState: previousState, withVC: nextVC)
+                    swap(fromVC, withVC: nextVC)
                 }
                 else {
                     
@@ -31,13 +31,13 @@ extension FAPanelController {
                     
                     if transitionOption is UIViewAnimationOptions {
                         
-                        swap(fromVC, ofState: previousState, withVC: nextVC)
+                        swap(fromVC, withVC: nextVC)
                         performNativeTransition()
                     }
                     else {
                         
                         let snapshot = self.snapshot
-                        swap(fromVC, ofState: previousState, withVC: nextVC)
+                        swap(fromVC, withVC: nextVC)
                         
                         
                         let transOption = transitionOption as! FAPanelTransitionType
@@ -99,12 +99,12 @@ extension FAPanelController {
     
     
     
-    private func swap( _ fromVC: UIViewController?, ofState previousState:FAPanelVisibleState, withVC toVC: UIViewController?) {
+    private func swap( _ fromVC: UIViewController?, withVC toVC: UIViewController?) {
         
         fromVC?.willMove(toParentViewController: nil)
         fromVC?.view.removeFromSuperview()
         fromVC?.removeFromParentViewController()
-        loadCenterPanel(FromState: previousState)
+        loadCenterPanel()
         addChildViewController(toVC!)
         centerPanelContainer.addSubview(toVC!.view)
         toVC!.didMove(toParentViewController: self)
@@ -370,7 +370,7 @@ extension FAPanelController {
     
     //  Loading of panels
     
-    internal func loadCenterPanel(FromState: FAPanelVisibleState) {
+    internal func loadCenterPanel() {
         
         centerPanelVC!.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         centerPanelVC!.view.frame = centerPanelContainer.bounds
@@ -393,6 +393,13 @@ extension FAPanelController {
                 leftPanelContainer.addSubview(leftPanelVC!.view)
             }
             leftPanelContainer.isHidden = false
+        }
+        
+        if isLeftPanelOnFront {
+            view.bringSubview(toFront: leftPanelContainer)
+        }
+        else {
+            view.sendSubview(toBack: leftPanelContainer)
         }
     }
     
@@ -431,10 +438,17 @@ extension FAPanelController {
         
         if leftPanelVC != nil {
             centerPanelVC?.view.endEditing(true)
+            
             state = .left
             loadLeftPanel()
-            slideCenterPanel(animated: animated, bounce: bounce)
-            handleScrollsToTopForContainers(centerEnabled: false, leftEnabled: true, rightEnabled: false)
+            
+            if isLeftPanelOnFront {
+                slideLeftPanelIn(animated: animated)
+            }
+            else {
+                slideCenterPanel(animated: animated, bounce: bounce)
+                handleScrollsToTopForContainers(centerEnabled: false, leftEnabled: true, rightEnabled: false)
+            }
         }
     }
     
@@ -455,7 +469,6 @@ extension FAPanelController {
         
         state = .center
         _ = updateCenterPanelSlidingFrame()
-        
         if animated {
             animateCenterPanel(shouldBounce: bounce, completion: { (finished) in
                 self.leftPanelContainer.isHidden = true
@@ -475,6 +488,7 @@ extension FAPanelController {
     }
     
     
+    
     private func slideCenterPanel(animated: Bool, bounce:Bool) {
         
         _ = updateCenterPanelSlidingFrame()
@@ -487,6 +501,66 @@ extension FAPanelController {
         }
         tapView = UIView()
     }
+
+    
+    internal func slideLeftPanelIn(animated: Bool) {
+
+        if animated {
+
+            let duration: TimeInterval = TimeInterval(configs.maxAnimDuration)
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                
+                var frame = self.leftPanelContainer.frame
+                frame.origin.x = 0.0
+                self.leftPanelContainer.frame = frame
+                
+            }, completion:{ (finished) in
+                
+            })
+        }
+        else {
+            
+            var frame = self.leftPanelContainer.frame
+            frame.origin.x = 0.0
+            self.leftPanelContainer.frame = frame
+        }
+        
+        tapView = UIView()
+    }
+
+    
+    internal func slideLeftPanelOut(animated: Bool) {
+        
+        if animated {
+            
+            let duration: TimeInterval = TimeInterval(configs.maxAnimDuration)
+            
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                
+                var frame = self.leftPanelContainer.frame
+                frame.origin.x = -self.widthForLeftPanelVC
+                self.leftPanelContainer.frame = frame
+            
+            }, completion:{ (finished) in
+                self.view.sendSubview(toBack: self.leftPanelContainer)
+                self.unloadPanels()
+                self.state = .center
+            })
+        }
+        else {
+            
+            var frame = leftPanelContainer.frame
+            frame.origin.x = -widthForLeftPanelVC
+            leftPanelContainer.frame = frame
+            view.sendSubview(toBack: leftPanelContainer)
+            unloadPanels()
+            state = .center
+        }
+        
+        tapView = nil
+        handleScrollsToTopForContainers(centerEnabled: true, leftEnabled: false, rightEnabled: false)
+    }
+
     
     
     private func updateCenterPanelContainer() {
@@ -571,9 +645,14 @@ extension FAPanelController {
     
     
     internal func layoutSideContainers( withDuration: TimeInterval, animated: Bool) {
-        
-        var leftFrame: CGRect  = view.bounds
+
         var rightFrame: CGRect = view.bounds
+        var leftFrame: CGRect  = leftPanelContainer.frame
+
+        if !isLeftPanelOnFront {
+            leftFrame = view.bounds
+        }
+        
         
         if (configs.pusheSidePanels && !centerPanelHidden) {
             leftFrame.origin.x = centerPanelContainer.frame.origin.x - widthForLeftPanelVC
@@ -786,7 +865,26 @@ extension FAPanelController {
         }
         return translationInX
     }
+
     
+    internal func xPositionForLeftPanel( _ translationInX: CGFloat) -> CGFloat {
+        
+        if state == .center {
+
+            let newPosition = -widthForLeftPanelVC + translationInX
+            if newPosition > 0.0 { return 0.0 }
+            else if newPosition < -widthForLeftPanelVC { return 0.0 }
+            else { return newPosition }
+        }
+        else if state == .left {
+
+            if translationInX > 0.0 { return 0.0 }
+            else if translationInX < -widthForLeftPanelVC { return -widthForLeftPanelVC }
+            else { return translationInX }
+        }
+        else { return 0.0 }
+    }
+
     
     
     

@@ -24,6 +24,7 @@ class CenterVC: UIViewController {
     
     @IBOutlet var sidePanelsOpenAnimDuration: UILabel!
 
+    @IBOutlet var leftPanelPositionSwitch: UISwitch!
     
     
     
@@ -66,6 +67,7 @@ class CenterVC: UIViewController {
         centerPanelOnlyAnimOpts.delegate = self
         centerPanelOnlyAnimOpts.inputView = pickerView
         
+        leftPanelPositionSwitch.setOn(panel!.isLeftPanelOnFront, animated: false)
         
 
         //  Resetting the Panel Configs...
@@ -141,6 +143,11 @@ class CenterVC: UIViewController {
     
     @IBAction func showLeftVC(_ sender: Any) {
         panel?.openLeft(animated: true)
+    }
+
+    @IBAction func updateLeftPanelPosition(_ sender: UISwitch) {
+        
+        panel?.leftPanelPosition = sender.isOn ? .front : .back
     }
     
     @IBAction func changeCenterVC(_ sender: UIButton) {

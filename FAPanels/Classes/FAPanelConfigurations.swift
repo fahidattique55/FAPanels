@@ -25,7 +25,6 @@ public enum FAPanelVisibleState: Int {
 
 
 
-
 // Configurations for Panels
 
 open class FAPanelConfigurations: NSObject {
