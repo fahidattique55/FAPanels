@@ -18,7 +18,7 @@
 
 
 
-## New Features Added
+## New Features Added ( > 0.2.1 only)
 ---
 
 - [x] Left panel position (front/back) to center panel
