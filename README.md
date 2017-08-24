@@ -22,7 +22,7 @@
 ---
 
 - [x] Left panel position (front/back) to center panel
-- [x] Shadow on left panel if left position is front 
+- [x] Shadow on left panel, if left panel position is front 
 - [x] FAPanel State Delegate feature
 
 
