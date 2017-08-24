@@ -566,7 +566,6 @@ extension FAPanelController {
     private func updateCenterPanelContainer() {
         
         centerPanelContainer.frame = centeralPanelSlidingFrame
-        applyStyle(onContainer: centerPanelContainer, withDuration: 0.0, animated: false)
         if configs.pusheSidePanels {
             layoutSideContainers(withDuration: 0.0, animated: false)
         }
@@ -661,8 +660,6 @@ extension FAPanelController {
         
         leftPanelContainer.frame = leftFrame
         rightPanelContainer.frame = rightFrame
-        applyStyle(onContainer: leftPanelContainer, withDuration: withDuration, animated: animated)
-        applyStyle(onContainer: rightPanelContainer, withDuration: withDuration, animated: animated)
     }
     
     
@@ -788,7 +785,6 @@ extension FAPanelController {
         
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveLinear, .layoutSubviews], animations: {
             self.centerPanelContainer.frame = self.centeralPanelSlidingFrame
-            self.applyStyle(onContainer: self.centerPanelContainer, withDuration: duration, animated: true)
             if self.configs.pusheSidePanels {
                 self.layoutSideContainers(withDuration: 0.0, animated: false)
             }
@@ -872,8 +868,12 @@ extension FAPanelController {
         if state == .center {
 
             let newPosition = -widthForLeftPanelVC + translationInX
+
+            print("newPosition : \(newPosition)")
+
+            
             if newPosition > 0.0 { return 0.0 }
-            else if newPosition < -widthForLeftPanelVC { return 0.0 }
+            else if newPosition < -widthForLeftPanelVC { return -widthForLeftPanelVC }
             else { return newPosition }
         }
         else if state == .left {

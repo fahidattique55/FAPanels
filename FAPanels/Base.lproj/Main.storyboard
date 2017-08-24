@@ -181,16 +181,16 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii1-w2-cZk">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="733"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="719"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iib-Te-RL2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="733"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="719"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vI0-NU-j7i">
-                                                                <rect key="frame" x="16" y="13" width="343" height="720"/>
+                                                                <rect key="frame" x="16" y="13" width="343" height="706"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-bQ-Elx">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="110"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="96"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Left Panel Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQm-vd-2Tc">
                                                                                 <rect key="frame" x="5" y="5" width="330" height="30"/>
@@ -209,7 +209,7 @@
                                                                                         <constraints>
                                                                                             <constraint firstAttribute="height" constant="30" id="pf6-6e-LHh"/>
                                                                                         </constraints>
-                                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -231,12 +231,12 @@
                                                                             <constraint firstItem="MQm-vd-2Tc" firstAttribute="leading" secondItem="aoH-bQ-Elx" secondAttribute="leading" constant="5" id="Iqt-Kx-elY"/>
                                                                             <constraint firstItem="mhk-nD-H3F" firstAttribute="top" secondItem="MQm-vd-2Tc" secondAttribute="bottom" constant="16" id="Wfn-gl-0xH"/>
                                                                             <constraint firstItem="MQm-vd-2Tc" firstAttribute="top" secondItem="aoH-bQ-Elx" secondAttribute="top" constant="5" id="Z4U-dh-UbF"/>
-                                                                            <constraint firstAttribute="height" constant="110" id="dHe-y9-rHb"/>
+                                                                            <constraint firstAttribute="height" constant="96" id="dHe-y9-rHb"/>
                                                                             <constraint firstAttribute="trailing" secondItem="mhk-nD-H3F" secondAttribute="trailing" constant="8" id="sqT-Ud-wVb"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JA9-Ae-0WN">
-                                                                        <rect key="frame" x="0.0" y="115" width="343" height="225"/>
+                                                                        <rect key="frame" x="0.0" y="101" width="343" height="225"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center Panel Animations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDg-oA-dQb">
                                                                                 <rect key="frame" x="5" y="5" width="330" height="30"/>
@@ -328,7 +328,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GO3-Bn-MKG">
-                                                                        <rect key="frame" x="0.0" y="345" width="343" height="220"/>
+                                                                        <rect key="frame" x="0.0" y="331" width="343" height="220"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pan Gesture Recognizer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rW9-Ek-0ss">
                                                                                 <rect key="frame" x="8" y="8" width="330" height="30"/>
@@ -432,7 +432,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cY9-PZ-ocr">
-                                                                        <rect key="frame" x="0.0" y="570" width="343" height="150"/>
+                                                                        <rect key="frame" x="0.0" y="556" width="343" height="150"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Side Panels" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpn-Jy-6Cb">
                                                                                 <rect key="frame" x="8" y="8" width="327" height="30"/>

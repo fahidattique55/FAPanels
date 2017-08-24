@@ -36,7 +36,6 @@ extension FAPanelController {
         centerPanelContainer.frame = updateCenterPanelSlidingFrame()
         layoutSideContainers(withDuration: duration, animated: true)
         layoutSidePanelVCs()
-        applyStyle(onContainer: centerPanelContainer, withDuration: duration, animated: true)
         
         if centerPanelHidden {
             var frame: CGRect  = centerPanelContainer.frame

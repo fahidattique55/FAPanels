@@ -9,6 +9,23 @@
 import UIKit
 
 
+// FAPanel Delegate
+
+public protocol FAPanelStateDelegate {
+    
+    func centerPanelWillBecomeActive()
+    func leftPanelWillBecomeActive()
+    func rightPanelWillBecomeActive()
+    
+    func centerPanelDidBecomeActive()
+    func leftPanelDidBecomeActive()
+    func rightPanelDidBecomeActive()
+}
+
+
+
+
+
 // Left Panel Position
 
 public enum FALeftPanelPosition: Int {
@@ -16,6 +33,12 @@ public enum FALeftPanelPosition: Int {
 }
 
 
+
+
+
+
+
+// FAPanel Controller
 
 open class FAPanelController: UIViewController {
 
@@ -102,7 +125,6 @@ open class FAPanelController: UIViewController {
         layoutSideContainers(withDuration: 0.0, animated: false)
         layoutSidePanelVCs()
         centerPanelContainer.frame = updateCenterPanelSlidingFrame()
-        applyStyle(onContainer: centerPanelContainer, withDuration: 0.0, animated: false)
     }
 
     
@@ -112,6 +134,19 @@ open class FAPanelController: UIViewController {
         _ = updateCenterPanelSlidingFrame()
     }
 
+    
+    override open func viewWillLayoutSubviews() {
+
+        super.viewWillLayoutSubviews()
+        
+        let shadowPath = UIBezierPath(rect: leftPanelContainer.bounds)
+        leftPanelContainer.layer.masksToBounds = false
+        leftPanelContainer.layer.shadowColor = configs.shadowColor
+        leftPanelContainer.layer.shadowOffset = configs.shadowOffset
+        leftPanelContainer.layer.shadowOpacity = configs.shadowOppacity
+        leftPanelContainer.layer.shadowPath = shadowPath.cgPath
+
+    }
     
     
     deinit {
@@ -417,32 +452,12 @@ open class FAPanelController: UIViewController {
     
     //  style for panels
     
-    internal func applyStyle(onContainer: UIView, withDuration duration: TimeInterval, animated: Bool) {
-        
-        let shadowPath: UIBezierPath = UIBezierPath(roundedRect: onContainer.bounds, cornerRadius: 0.0)
-        
-        if animated {
-            
-            let animation = CABasicAnimation(keyPath: "shadowPath")
-            animation.fromValue = onContainer.layer.shadowPath
-            animation.toValue = shadowPath.cgPath
-            animation.duration = duration
-            onContainer.layer.add(animation, forKey: "shadowPath")
-        }
-        onContainer.layer.shadowPath = shadowPath.cgPath
-        onContainer.layer.shadowColor = UIColor.clear.cgColor
-        onContainer.layer.shadowRadius = 8.0
-        onContainer.layer.shadowOpacity = 0.70
-        onContainer.clipsToBounds = false
-    }
-    
-    
     internal func applyStyle(onView: UIView) {
         
         onView.layer.cornerRadius = configs.cornerRadius
         onView.clipsToBounds = true
     }
-    
+
     
     
 
@@ -453,7 +468,44 @@ open class FAPanelController: UIViewController {
     
     //  Panel States
 
-    internal  var _state: FAPanelVisibleState = .center
+    var delegate: FAPanelStateDelegate? = nil
+    
+    internal  var _state: FAPanelVisibleState = .center {
+        
+        willSet {
+            
+            switch _state {
+            case .center:
+                delegate?.centerPanelWillBecomeActive()
+                break
+                
+            case .left:
+                delegate?.leftPanelWillBecomeActive()
+                break
+                
+            case .right:
+                delegate?.rightPanelWillBecomeActive()
+                break
+            }
+        }
+        didSet {
+
+            switch _state {
+            case .center:
+                delegate?.centerPanelDidBecomeActive()
+                break
+                
+            case .left:
+                delegate?.leftPanelDidBecomeActive()
+                break
+                
+            case .right:
+                delegate?.rightPanelDidBecomeActive()
+                break
+            }
+        }
+    }
+
     internal  var  state: FAPanelVisibleState {
         get{
             return _state

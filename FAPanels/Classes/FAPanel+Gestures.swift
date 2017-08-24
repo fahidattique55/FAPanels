@@ -103,107 +103,117 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     
     internal func handlePan(_ gesture: UIGestureRecognizer) {
         
-        if !configs.canRecognizePanGesture {
-            return
-        }
+        if !configs.canRecognizePanGesture { return }
         
         if gesture is UIPanGestureRecognizer {
             
             let pan: UIPanGestureRecognizer = gesture as! UIPanGestureRecognizer
-            let translate: CGPoint = pan.translation(in: centerPanelContainer)
+            let translation: CGPoint = pan.translation(in: centerPanelContainer)
 
             if pan.state == .began {
                 
-                paningStartDirection = translate.x < 0 ? .left : .right
-                
+                paningStartDirection = translation.x < 0 ? .left : .right
                 centerPanelOriginBeforePan = centerPanelContainer.frame.origin
                 leftPanelOriginBeforePan   = leftPanelContainer.frame.origin
-                
-                print("leftPanelOriginBeforePan : \(leftPanelOriginBeforePan)")
-                
             }
             else if pan.state == .changed {
                 
-                
-                if state == .left && isLeftPanelOnFront{
+                if state == .left && isLeftPanelOnFront {
+                    updateLeftPanelForTranslation(translation)
+                }
+                else if state == .center && isLeftPanelOnFront && (paningStartDirection == .right) {
                     
-                    var frame: CGRect = leftPanelContainer.frame
-                    frame.origin.x = CGFloat(roundf(Float(xPositionForLeftPanel(translate.x))))
-                    leftPanelContainer.frame = frame
+                    loadLeftPanel()
+                    updateLeftPanelForTranslation(translation)
                     return
                 }
-                
-                
-                if state == .center {
-
-                    if isLeftPanelOnFront {
-                        
-                        if paningStartDirection == .right {
-
-                            loadLeftPanel()
-                            
-                            var newFrame: CGRect = leftPanelContainer.frame
-                            newFrame.origin.x = CGFloat(roundf(Float(xPositionForLeftPanel(translate.x))))
-                            leftPanelContainer.frame = newFrame
-                            return
-                        }
-                    }
+                else {
+                    updateCenterPanelForTranslation(translation)
                 }
 
-                var frame: CGRect = centeralPanelSlidingFrame
-                frame.origin.x += CGFloat(roundf(Float(xPositionFor(translate.x))))
-                centerPanelContainer.frame = frame
-                
-                if frame.origin.x > 0.0 {
-                    loadLeftPanel()
-                }
-                else if frame.origin.x < 0.0 {
-                    loadRightPanel()
-                }
-
-                // adjust side panel locations, if needed
-                if configs.pusheSidePanels {
-                    layoutSideContainers(withDuration: 0.0, animated: false)
-                }
             }
             if gesture.state == .ended {
                 
-                var movementInX: CGFloat =  centerPanelContainer.frame.origin.x - centerPanelOriginBeforePan.x
-
-                if state == .center && isLeftPanelOnFront{
-
-                    if paningStartDirection == .right {
-                        movementInX = leftPanelContainer.frame.origin.x - leftPanelOriginBeforePan.x
-                    }
-                }
-                else if state == .left && isLeftPanelOnFront{
-                    movementInX = leftPanelContainer.frame.origin.x - leftPanelOriginBeforePan.x
-                }
+                let movement = calculateMovementInX()
                 
-                
-                
-                if shouldCompletePanFor(movement: movementInX) {
-                    completePanFor(movementInX)
+                if shouldCompletePanFor(movement: movement) {
+                    completePanFor(movement)
                 }
                 else {
-                    slideLeftPanelOutIfNeeded()
-                    undoPan()
+                    undoPanAndLayoutLeftPanel()
                 }
             }
             else if gesture.state == .cancelled {
-                slideLeftPanelOutIfNeeded()
-                undoPan()
+                undoPanAndLayoutLeftPanel()
             }
         }
     }
     
     
-    func slideLeftPanelOutIfNeeded() {
+    
+    
+    internal func calculateMovementInX() -> CGFloat {
+        
+        var movementInX: CGFloat =  centerPanelContainer.frame.origin.x - centerPanelOriginBeforePan.x
+        
+        if state == .center && isLeftPanelOnFront && (paningStartDirection == .right) {
+            movementInX = leftPanelContainer.frame.origin.x - leftPanelOriginBeforePan.x
+        }
+        else if state == .left && isLeftPanelOnFront{
+            movementInX = leftPanelContainer.frame.origin.x - leftPanelOriginBeforePan.x
+        }
+        
+        return movementInX
+    }
+
+    
+    
+    internal func undoPanAndLayoutLeftPanel() {
+        
+        slideLeftPanelOutIfNeeded()
+        undoPan()
+    }
+    
+    
+    
+    internal func slideLeftPanelOutIfNeeded() {
         
         if state == .center && isLeftPanelOnFront {
             if paningStartDirection == .right { slideLeftPanelOut(animated: true) }
         }
     }
+    
+    
+    
+    internal func updateLeftPanelForTranslation(_ translation: CGPoint) {
+        
+        var frame: CGRect = leftPanelContainer.frame
+        frame.origin.x = CGFloat(roundf(Float(xPositionForLeftPanel(translation.x))))
+        leftPanelContainer.frame = frame
+    }
+
+    
+    
+    internal func updateCenterPanelForTranslation(_ translation: CGPoint) {
+        
+        var frame: CGRect = centeralPanelSlidingFrame
+        frame.origin.x += CGFloat(roundf(Float(xPositionFor(translation.x))))
+        
+        if isLeftPanelOnFront && frame.origin.x > 0.0 {
+            frame.origin.x = 0.0
+        }
+
+        centerPanelContainer.frame = frame
+        
+        if frame.origin.x > 0.0 { loadLeftPanel() }
+        else if frame.origin.x < 0.0 { loadRightPanel() }
+        if configs.pusheSidePanels { layoutSideContainers(withDuration: 0.0, animated: false) }
+    }
+
+    
+    
+    
+    
     
     
     
