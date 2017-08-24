@@ -21,7 +21,8 @@
 ## New Features Added
 ---
 
-- [x] Left panel position against center panel
+- [x] Left panel position (front/back) to center panel
+- [x] Shadow on left panel if left position is front 
 - [x] FAPanel State Delegate feature
 
 
@@ -29,7 +30,7 @@
 
 | back | front | 
 | --- | --- |
-| ![](http://i.imgur.com/gsYw0SX.gif) |  ![](http://i.imgur.com/miVZ2nB.gif)
+| ![](http://i.imgur.com/f7slmmx.gif) |  ![](http://i.imgur.com/T7AgNl1.gif)
 
 
 ## Features

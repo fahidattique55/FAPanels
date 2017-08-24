@@ -868,10 +868,6 @@ extension FAPanelController {
         if state == .center {
 
             let newPosition = -widthForLeftPanelVC + translationInX
-
-            print("newPosition : \(newPosition)")
-
-            
             if newPosition > 0.0 { return 0.0 }
             else if newPosition < -widthForLeftPanelVC { return -widthForLeftPanelVC }
             else { return newPosition }
