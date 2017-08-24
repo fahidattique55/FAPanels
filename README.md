@@ -18,6 +18,19 @@
 
 
 
+## New Features Added
+---
+
+- [x] Left panel position against center panel
+- [x] FAPanel State Delegate feature
+
+
+### Left Panel Position
+
+| back | front | 
+| --- | --- |
+| ![](http://i.imgur.com/gsYw0SX.gif) |  ![](http://i.imgur.com/miVZ2nB.gif)
+
 
 ## Features
 ---
@@ -119,6 +132,13 @@ var handleAutoRotation: Bool = true
 // Applies corner radius to panels
 
 var cornerRadius: CGFloat = 0.0
+
+
+// Shadow configurations
+
+open var shadowColor   : CGColor = UIColor.black.cgColor
+open var shadowOffset  : CGSize  = CGSize(width: 10.0, height: 0.0)
+open var shadowOppacity: Float = 0.5
 
 
 // Remove panels from super view when possible
