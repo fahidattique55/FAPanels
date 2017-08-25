@@ -33,6 +33,23 @@
 | ![](http://i.imgur.com/f7slmmx.gif) |  ![](http://i.imgur.com/T7AgNl1.gif)
 
 
+### Usage
+
+
+
+```swift
+
+//  Set the Left Panel position
+
+let rootController: FAPanelController = window?.rootViewController as! FAPanelController
+
+rootController.leftPanelPosition = .front
+rootController.leftPanelPosition = .back
+
+
+```
+
+
 ## Features
 ---
 
