@@ -115,8 +115,8 @@ open class FAPanelConfigurations: NSObject {
     // Shadow configurations
     
     open var shadowColor   : CGColor = UIColor.black.cgColor
-    open var shadowOffset  : CGSize  = CGSize(width: 10.0, height: 0.0)
-    open var shadowOppacity: Float = 0.5
+    open var shadowOffset  : CGSize  = CGSize(width: 5.0, height: 0.0)
+    open var shadowOppacity: Float = 0.7
 
     
     
