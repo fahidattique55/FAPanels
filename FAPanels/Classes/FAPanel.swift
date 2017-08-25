@@ -367,10 +367,13 @@ open class FAPanelController: UIViewController {
    
         if isLeftPanelOnFront {
 
-            var frame = leftPanelContainer.frame
-            frame.size.width = widthForLeftPanelVC
-            frame.origin.x = -widthForLeftPanelVC
-            leftPanelContainer.frame = frame
+            if leftPanelContainer != nil {
+                
+                var frame = leftPanelContainer.frame
+                frame.size.width = widthForLeftPanelVC
+                frame.origin.x = -widthForLeftPanelVC
+                leftPanelContainer.frame = frame
+            }
         }
         else {
             leftPanelContainer.frame = view.bounds
