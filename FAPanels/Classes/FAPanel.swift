@@ -22,6 +22,21 @@ public protocol FAPanelStateDelegate {
     func rightPanelDidBecomeActive()
 }
 
+public extension FAPanelStateDelegate {
+    
+    func centerPanelWillBecomeActive() {}
+    func leftPanelWillBecomeActive() {}
+    func rightPanelWillBecomeActive() {}
+    
+    func centerPanelDidBecomeActive() {}
+    func leftPanelDidBecomeActive() {}
+    func rightPanelDidBecomeActive() {}
+}
+
+
+
+
+
 
 
 
@@ -471,13 +486,13 @@ open class FAPanelController: UIViewController {
     
     //  Panel States
 
-    var delegate: FAPanelStateDelegate? = nil
+    open var delegate: FAPanelStateDelegate? = nil
     
     internal  var _state: FAPanelVisibleState = .center {
         
         willSet {
             
-            switch _state {
+            switch newValue {
             case .center:
                 delegate?.centerPanelWillBecomeActive()
                 break
