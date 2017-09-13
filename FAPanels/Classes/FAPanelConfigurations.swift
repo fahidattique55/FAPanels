@@ -148,6 +148,11 @@ open class FAPanelConfigurations: NSObject {
     open var changeCenterPanelAnimated : Bool = true
     open var centerPanelTransitionType : FAPanelTransitionType = .boxFade
     open var centerPanelTransitionDuration: TimeInterval = 0.40
+    
+    // Display a dakr overlay over the center panel when leftpanelposition = .front
+    
+    open var showDarkOverlayUnderLeftPanelOnTop : Bool = false
+    open var darkOverlayUnderLeftPanelOnTopColor : UIColor = UIColor.black.withAlphaComponent(0.5)
  
 }
 
