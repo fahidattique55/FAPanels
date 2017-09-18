@@ -415,6 +415,10 @@ open class FAPanelController: UIViewController {
                 _tapView = newValue
                 if _tapView != nil {
                     
+                    if configs.showDarkOverlayUnderLeftPanelOnTop && leftPanelPosition == .front && state == .left
+                    {
+                        _tapView?.backgroundColor = configs.darkOverlayUnderLeftPanelOnTopColor
+                    }
                     _tapView?.frame = centerPanelContainer.bounds
                     _tapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                     addTapGestureToView(view: _tapView!)
