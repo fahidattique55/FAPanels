@@ -75,6 +75,8 @@ class CenterVC: UIViewController {
         panel!.configs = FAPanelConfigurations()
         panel!.configs.rightPanelWidth = 80
         panel!.configs.bounceOnRightPanelOpen = false
+        
+        panel!.delegate = self
     }
     
     
@@ -259,4 +261,41 @@ extension CenterVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickerDataSource[row]
     }
+}
+
+
+
+
+
+
+
+extension CenterVC: FAPanelStateDelegate {
+    
+    func centerPanelWillBecomeActive() {
+        print("centerPanelWillBecomeActive called")
+    }
+    
+    func centerPanelDidBecomeActive() {
+        print("centerPanelDidBecomeActive called")
+    }
+    
+    
+    func leftPanelWillBecomeActive() {
+        print("leftPanelWillBecomeActive called")
+    }
+    
+    
+    func leftPanelDidBecomeActive() {
+        print("leftPanelDidBecomeActive called")
+    }
+    
+    
+    func rightPanelWillBecomeActive() {
+        print("rightPanelWillBecomeActive called")
+    }
+    
+    func rightPanelDidBecomeActive() {
+        print("rightPanelDidBecomeActive called")
+    }
+    
 }
