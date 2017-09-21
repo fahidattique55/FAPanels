@@ -101,7 +101,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     //  Handle Pan Gesture
 
     
-    internal func handlePan(_ gesture: UIGestureRecognizer) {
+    @objc internal func handlePan(_ gesture: UIGestureRecognizer) {
         
         if !configs.canRecognizePanGesture { return }
         
@@ -302,7 +302,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     }
     
     
-    internal func _centerPanelTapped(gesture: UIGestureRecognizer){
+    @objc internal func _centerPanelTapped(gesture: UIGestureRecognizer){
         
         if state == .left {
             if isLeftPanelOnFront {

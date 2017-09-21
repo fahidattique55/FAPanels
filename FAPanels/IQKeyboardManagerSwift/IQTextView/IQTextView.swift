@@ -84,12 +84,19 @@ open class IQTextView : UITextView {
         super.layoutSubviews()
         
         if let unwrappedPlaceholderLabel = placeholderLabel {
-            unwrappedPlaceholderLabel.sizeToFit()
-            unwrappedPlaceholderLabel.frame = CGRect(x: 4, y: 8, width: self.frame.width-16, height: unwrappedPlaceholderLabel.frame.height)
+            
+            let offsetLeft = textContainerInset.left + textContainer.lineFragmentPadding
+            let offsetRight = textContainerInset.right + textContainer.lineFragmentPadding
+            let offsetTop = textContainerInset.top
+            let offsetBottom = textContainerInset.top
+
+            let expectedSize = unwrappedPlaceholderLabel.sizeThatFits(CGSize(width: self.frame.width-offsetLeft-offsetRight, height: self.frame.height-offsetTop-offsetBottom))
+
+            unwrappedPlaceholderLabel.frame = CGRect(x: offsetLeft, y: offsetTop, width: expectedSize.width, height: expectedSize.height)
         }
     }
 
-    open func refreshPlaceholder() {
+    @objc open func refreshPlaceholder() {
         
         if text.characters.count != 0 {
             placeholderLabel?.alpha = 0

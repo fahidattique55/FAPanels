@@ -22,17 +22,15 @@
 // THE SOFTWARE.
 
 
+import Foundation
 import UIKit
-
-private var kIQBarTitleInvocationTarget     = "kIQBarTitleInvocationTarget"
-private var kIQBarTitleInvocationSelector   = "kIQBarTitleInvocationSelector"
 
 open class IQTitleBarButtonItem: IQBarButtonItem {
    
-    open var font : UIFont? {
+    open var titleFont : UIFont? {
     
         didSet {
-            if let unwrappedFont = font {
+            if let unwrappedFont = titleFont {
                 _titleButton?.titleLabel?.font = unwrappedFont
             } else {
                 _titleButton?.titleLabel?.font = UIFont.systemFont(ofSize: 13)
@@ -55,45 +53,19 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
             if let color = selectableTextColor {
                 _titleButton?.setTitleColor(color, for:UIControlState())
             } else {
-                _titleButton?.setTitleColor(UIColor.init(colorLiteralRed: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
+                _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
             }
         }
     }
 
     /**
-     Optional target & action to behave toolbar title button as clickable button
-     
-     @param target Target object.
-     @param action Target Selector.
-     */
-    open func setTitleTarget(_ target: AnyObject?, action: Selector?) {
-        titleInvocation = (target, action)
-    }
-    
-    /**
      Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
      */
-    open var titleInvocation : (target: AnyObject?, action: Selector?) {
-        get {
-            let target: AnyObject? = objc_getAssociatedObject(self, &kIQBarTitleInvocationTarget) as AnyObject?
-            var action : Selector?
+    override open var invocation : (target: AnyObject?, action: Selector?) {
+
+        didSet {
             
-            if let selectorString = objc_getAssociatedObject(self, &kIQBarTitleInvocationSelector) as? String {
-                action = NSSelectorFromString(selectorString)
-            }
-            
-            return (target: target, action: action)
-        }
-        set(newValue) {
-            objc_setAssociatedObject(self, &kIQBarTitleInvocationTarget, newValue.target, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            
-            if let unwrappedSelector = newValue.action {
-                objc_setAssociatedObject(self, &kIQBarTitleInvocationSelector, NSStringFromSelector(unwrappedSelector), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            } else {
-                objc_setAssociatedObject(self, &kIQBarTitleInvocationSelector, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            }
-            
-            if (newValue.target == nil || newValue.action == nil)
+            if (invocation.target == nil || invocation.action == nil)
             {
                 self.isEnabled = false
                 _titleButton?.isEnabled = false
@@ -103,7 +75,7 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
             {
                 self.isEnabled = true
                 _titleButton?.isEnabled = true
-                _titleButton?.addTarget(newValue.target, action: newValue.action!, for: .touchUpInside)
+                _titleButton?.addTarget(invocation.target, action: invocation.action!, for: .touchUpInside)
             }
         }
     }
@@ -115,26 +87,49 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         super.init()
     }
     
-    init(title : String?) {
+    convenience init(title : String?) {
 
         self.init(title: nil, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         
         _titleView = UIView()
         _titleView?.backgroundColor = UIColor.clear
-        _titleView?.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         
         _titleButton = UIButton(type: .system)
         _titleButton?.isEnabled = false
         _titleButton?.titleLabel?.numberOfLines = 3
         _titleButton?.setTitleColor(UIColor.lightGray, for:.disabled)
-        _titleButton?.setTitleColor(UIColor.init(colorLiteralRed: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
+        _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
         _titleButton?.backgroundColor = UIColor.clear
         _titleButton?.titleLabel?.textAlignment = .center
         _titleButton?.setTitle(title, for: UIControlState())
-        _titleButton?.autoresizingMask = [.flexibleWidth,.flexibleHeight]
-        font = UIFont.systemFont(ofSize: 13.0)
-        _titleButton?.titleLabel?.font = self.font
+        titleFont = UIFont.systemFont(ofSize: 13.0)
+        _titleButton?.titleLabel?.font = self.titleFont
         _titleView?.addSubview(_titleButton!)
+        
+        if #available(iOS 11, *) {
+            _titleView?.translatesAutoresizingMaskIntoConstraints = false;
+            _titleView?.setContentHuggingPriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultLow.rawValue)-1)), for: .vertical)
+            _titleView?.setContentHuggingPriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultLow.rawValue)-1)), for: .horizontal)
+            _titleView?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)-1)), for: .vertical)
+            _titleView?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)-1)), for: .horizontal)
+            
+            _titleButton?.translatesAutoresizingMaskIntoConstraints = false;
+            _titleButton?.setContentHuggingPriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultLow.rawValue)-1)), for: .vertical)
+            _titleButton?.setContentHuggingPriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultLow.rawValue)-1)), for: .horizontal)
+            _titleButton?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)-1)), for: .vertical)
+            _titleButton?.setContentCompressionResistancePriority(UILayoutPriority(rawValue: UILayoutPriority.RawValue(Int(UILayoutPriority.defaultHigh.rawValue)-1)), for: .horizontal)
+
+            let top = NSLayoutConstraint.init(item: _titleButton!, attribute: .top, relatedBy: .equal, toItem: _titleView, attribute: .top, multiplier: 1, constant: 0)
+            let bottom = NSLayoutConstraint.init(item: _titleButton!, attribute: .bottom, relatedBy: .equal, toItem: _titleView, attribute: .bottom, multiplier: 1, constant: 0)
+            let leading = NSLayoutConstraint.init(item: _titleButton!, attribute: .leading, relatedBy: .equal, toItem: _titleView, attribute: .leading, multiplier: 1, constant: 0)
+            let trailing = NSLayoutConstraint.init(item: _titleButton!, attribute: .trailing, relatedBy: .equal, toItem: _titleView, attribute: .trailing, multiplier: 1, constant: 0)
+            
+            _titleView?.addConstraints([top,bottom,leading,trailing])
+        } else {
+            _titleView?.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+            _titleButton?.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        }
+
         customView = _titleView
     }
 
