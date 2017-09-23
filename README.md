@@ -17,6 +17,37 @@
 [![Platform](https://img.shields.io/cocoapods/p/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
 
 
+## New Features Added ( > 0.3.0 only)
+---
+
+- [x] Right panel position (front/back) to center panel
+- [x] Dark Overlay on right panel, if left panel position is front
+
+
+### Right Panel Position
+
+| back | front |
+| --- | --- |
+| ![]() |  ![]()
+
+
+### Usage
+
+
+
+```swift
+
+//  Set the Right Panel position
+
+let rootController: FAPanelController = window?.rootViewController as! FAPanelController
+
+rootController.rightPanelPosition = .front
+rootController.rightPanelPosition = .back
+
+
+```
+
+
 
 ## New Features Added ( > 0.2.1 only)
 ---
