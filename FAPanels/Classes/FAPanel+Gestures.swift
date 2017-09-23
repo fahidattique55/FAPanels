@@ -115,6 +115,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
                 paningStartDirection = translation.x < 0 ? .left : .right
                 centerPanelOriginBeforePan = centerPanelContainer.frame.origin
                 leftPanelOriginBeforePan   = leftPanelContainer.frame.origin
+                rightPanelOriginBeforePan  = rightPanelContainer.frame.origin
             }
             else if pan.state == .changed {
                 
@@ -127,11 +128,19 @@ extension FAPanelController: UIGestureRecognizerDelegate {
                     updateLeftPanelForTranslation(translation)
                     return
                 }
+                else if state == .right && isRightPanelOnFront {
+                    updateRightPanelForTranslation(translation)
+                }
+                else if state == .center && isRightPanelOnFront && (paningStartDirection == .left) {
+                    
+                    loadRightPanel()
+                    updateRightPanelForTranslation(translation)
+                    return
+                }
                 else {
                     updateCenterPanelForTranslation(translation)
                 }
-
-            }
+          }
             if gesture.state == .ended {
                 
                 let movement = calculateMovementInX()
@@ -140,11 +149,11 @@ extension FAPanelController: UIGestureRecognizerDelegate {
                     completePanFor(movement)
                 }
                 else {
-                    undoPanAndLayoutLeftPanel()
+                    undoPanAndLayoutSidePanels()
                 }
             }
             else if gesture.state == .cancelled {
-                undoPanAndLayoutLeftPanel()
+                undoPanAndLayoutSidePanels()
             }
         }
     }
@@ -162,15 +171,22 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         else if state == .left && isLeftPanelOnFront{
             movementInX = leftPanelContainer.frame.origin.x - leftPanelOriginBeforePan.x
         }
-        
+        else if state == .center && isRightPanelOnFront && (paningStartDirection == .left) {
+            movementInX = rightPanelContainer.frame.origin.x - rightPanelOriginBeforePan.x
+        }
+        else if state == .right && isRightPanelOnFront{
+            movementInX = rightPanelContainer.frame.origin.x - rightPanelOriginBeforePan.x
+        }
+
         return movementInX
     }
 
     
     
-    internal func undoPanAndLayoutLeftPanel() {
+    internal func undoPanAndLayoutSidePanels() {
         
         slideLeftPanelOutIfNeeded()
+        slideRightPanelOutIfNeeded()
         undoPan()
     }
     
@@ -182,7 +198,15 @@ extension FAPanelController: UIGestureRecognizerDelegate {
             if paningStartDirection == .right { slideLeftPanelOut(animated: true) }
         }
     }
+
     
+    internal func slideRightPanelOutIfNeeded() {
+        
+        if state == .center && isRightPanelOnFront {
+            if paningStartDirection == .left { slideRightPanelOut(animated: true) }
+        }
+    }
+
     
     
     internal func updateLeftPanelForTranslation(_ translation: CGPoint) {
@@ -190,6 +214,14 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         var frame: CGRect = leftPanelContainer.frame
         frame.origin.x = CGFloat(roundf(Float(xPositionForLeftPanel(translation.x))))
         leftPanelContainer.frame = frame
+    }
+
+
+    internal func updateRightPanelForTranslation(_ translation: CGPoint) {
+        
+        var frame: CGRect = rightPanelContainer.frame
+        frame.origin.x = CGFloat(roundf(Float(xPositionForRightPanel(translation.x))))
+        rightPanelContainer.frame = frame
     }
 
     
@@ -200,6 +232,9 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         frame.origin.x += CGFloat(roundf(Float(xPositionFor(translation.x))))
         
         if isLeftPanelOnFront && frame.origin.x > 0.0 {
+            frame.origin.x = 0.0
+        }
+        else if isRightPanelOnFront && frame.origin.x < 0.0 {
             frame.origin.x = 0.0
         }
 
@@ -248,8 +283,13 @@ extension FAPanelController: UIGestureRecognizerDelegate {
             break
             
         case .right:
-            
-            openCenter(animated: true, shouldBounce: configs.bounceOnRightPanelClose)
+
+            if isRightPanelOnFront {
+                slideRightPanelOut(animated: true)
+            }
+            else {
+                openCenter(animated: true, shouldBounce: configs.bounceOnRightPanelClose)
+            }
             break
         }
     }
@@ -307,6 +347,12 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         if state == .left {
             if isLeftPanelOnFront {
                 slideLeftPanelOut(animated: true)
+                return
+            }
+        }
+        else if state == .right {
+            if isRightPanelOnFront {
+                slideRightPanelOut(animated: true)
                 return
             }
         }

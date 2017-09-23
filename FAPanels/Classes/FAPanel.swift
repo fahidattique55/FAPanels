@@ -43,7 +43,7 @@ public extension FAPanelStateDelegate {
 
 // Left Panel Position
 
-public enum FALeftPanelPosition: Int {
+public enum FASidePanelPosition: Int {
     case front = 0, back
 }
 
@@ -182,6 +182,7 @@ open class FAPanelController: UIViewController {
         layoutLeftContainer()
         leftPanelContainer.isHidden = true
         rightPanelContainer = UIView(frame: view.bounds)
+        layoutRightContainer()
         rightPanelContainer.isHidden = true
         containersConfigurations()
         view.addSubview(centerPanelContainer)
@@ -226,13 +227,14 @@ open class FAPanelController: UIViewController {
     internal var centeralPanelSlidingFrame: CGRect   = CGRect.zero
     internal var centerPanelOriginBeforePan: CGPoint = CGPoint.zero
     internal var leftPanelOriginBeforePan: CGPoint   = CGPoint.zero
+    internal var rightPanelOriginBeforePan: CGPoint   = CGPoint.zero
 
 
     internal let keyPathOfView = "view"
     internal static var kvoContext: Character!
     
     
-    internal var _leftPanelPosition : FALeftPanelPosition = .back {
+    internal var _leftPanelPosition : FASidePanelPosition = .back {
         
         didSet {
             
@@ -248,7 +250,7 @@ open class FAPanelController: UIViewController {
         return leftPanelPosition == .front
     }
     
-    open var leftPanelPosition : FALeftPanelPosition {
+    open var leftPanelPosition : FASidePanelPosition {
         
         get {
             return _leftPanelPosition
@@ -257,6 +259,39 @@ open class FAPanelController: UIViewController {
             _leftPanelPosition = newValue
         }
     }
+
+    
+    
+    internal var _rightPanelPosition : FASidePanelPosition = .back {
+        
+        didSet {
+            
+            if _rightPanelPosition == .front {
+                configs.resizeRightPanel = true
+            }
+            
+            layoutRightContainer()
+            layoutSidePanelVCs()
+        }
+    }
+    
+    internal var isRightPanelOnFront : Bool {
+        return rightPanelPosition == .front
+    }
+    
+    open var rightPanelPosition : FASidePanelPosition {
+        
+        get {
+            return _rightPanelPosition
+        }
+        set {
+            _rightPanelPosition = newValue
+        }
+    }
+
+    
+    
+    
     
     
     internal enum GestureStartDirection: UInt { case left = 0, right, none }
@@ -352,7 +387,16 @@ open class FAPanelController: UIViewController {
                         return
                     }
                 }
-                
+                else if state == .right {
+                    
+                    if isRightPanelOnFront {
+                        
+                        swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
+                        slideRightPanelOut(animated: true)
+                        return
+                    }
+                }
+
                 
                 UIView.animate(withDuration: 0.2, animations: {
                     
@@ -394,7 +438,25 @@ open class FAPanelController: UIViewController {
             leftPanelContainer.frame = view.bounds
         }
     }
+
     
+    
+    internal func layoutRightContainer() {
+        
+        if isRightPanelOnFront {
+            
+            if rightPanelContainer != nil {
+                
+                var frame = rightPanelContainer.frame
+                frame.size.width = widthForRightPanelVC
+                frame.origin.x =  view.frame.size.width
+                rightPanelContainer.frame = frame
+            }
+        }
+        else {
+            rightPanelContainer.frame = view.bounds
+        }
+    }
     
     
     
@@ -419,6 +481,11 @@ open class FAPanelController: UIViewController {
                     {
                         _tapView?.backgroundColor = configs.darkOverlayUnderLeftPanelOnTopColor
                     }
+                    else if configs.showDarkOverlayUnderRightPanelOnTop && rightPanelPosition == .front && state == .right
+                    {
+                        _tapView?.backgroundColor = configs.darkOverlayUnderRightPanelOnTopColor
+                    }
+
                     _tapView?.frame = centerPanelContainer.bounds
                     _tapView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
                     addTapGestureToView(view: _tapView!)

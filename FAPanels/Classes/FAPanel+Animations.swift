@@ -419,6 +419,13 @@ extension FAPanelController {
             }
             rightPanelContainer.isHidden = false
         }
+        
+        if isRightPanelOnFront {
+            view.bringSubview(toFront: rightPanelContainer)
+        }
+        else {
+            view.sendSubview(toBack: rightPanelContainer)
+        }
     }
     
     
@@ -459,8 +466,14 @@ extension FAPanelController {
             centerPanelVC?.view.endEditing(true)
             state = .right
             loadRightPanel()
-            slideCenterPanel(animated: animated, bounce: bounce)
-            handleScrollsToTopForContainers(centerEnabled: false, leftEnabled: false, rightEnabled: true)
+            
+            if isRightPanelOnFront {
+                slideRightPanelIn(animated: animated)
+            }
+            else {
+                slideCenterPanel(animated: animated, bounce: bounce)
+                handleScrollsToTopForContainers(centerEnabled: false, leftEnabled: false, rightEnabled: true)
+            }
         }
     }
     
@@ -562,6 +575,67 @@ extension FAPanelController {
     }
 
     
+    internal func slideRightPanelIn(animated: Bool) {
+        
+        if animated {
+            
+            let duration: TimeInterval = TimeInterval(configs.maxAnimDuration)
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                
+                var frame = self.rightPanelContainer.frame
+                frame.origin.x = self.view.frame.size.width - self.widthForRightPanelVC
+                self.rightPanelContainer.frame = frame
+                
+            }, completion:{ (finished) in
+                
+            })
+        }
+        else {
+            
+            var frame = self.rightPanelContainer.frame
+            frame.origin.x = self.view.frame.size.width - widthForRightPanelVC
+            self.rightPanelContainer.frame = frame
+        }
+        
+        tapView = UIView()
+    }
+    
+    
+    internal func slideRightPanelOut(animated: Bool) {
+        
+        if animated {
+            
+            let duration: TimeInterval = TimeInterval(configs.maxAnimDuration)
+            
+            UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseInOut], animations: {
+                
+                var frame = self.rightPanelContainer.frame
+                frame.origin.x = self.view.frame.size.width
+                self.rightPanelContainer.frame = frame
+                
+            }, completion:{ (finished) in
+                self.view.sendSubview(toBack: self.rightPanelContainer)
+                self.unloadPanels()
+                self.state = .center
+            })
+        }
+        else {
+            
+            var frame = rightPanelContainer.frame
+            frame.origin.x = self.view.frame.size.width
+            rightPanelContainer.frame = frame
+            view.sendSubview(toBack: rightPanelContainer)
+            unloadPanels()
+            state = .center
+        }
+        
+        tapView = nil
+        handleScrollsToTopForContainers(centerEnabled: true, leftEnabled: false, rightEnabled: false)
+    }
+
+    
+    
+    
     
     private func updateCenterPanelContainer() {
         
@@ -645,13 +719,12 @@ extension FAPanelController {
     
     internal func layoutSideContainers( withDuration: TimeInterval, animated: Bool) {
 
-        var rightFrame: CGRect = view.bounds
+        var rightFrame: CGRect = rightPanelContainer.frame
         var leftFrame: CGRect  = leftPanelContainer.frame
 
-        if !isLeftPanelOnFront {
-            leftFrame = view.bounds
-        }
-        
+        if !isLeftPanelOnFront { leftFrame = view.bounds }
+        if !isRightPanelOnFront { rightFrame = view.bounds }
+
         
         if (configs.pusheSidePanels && !centerPanelHidden) {
             leftFrame.origin.x = centerPanelContainer.frame.origin.x - widthForLeftPanelVC
@@ -877,6 +950,30 @@ extension FAPanelController {
             if translationInX > 0.0 { return 0.0 }
             else if translationInX < -widthForLeftPanelVC { return -widthForLeftPanelVC }
             else { return translationInX }
+        }
+        else { return 0.0 }
+    }
+
+    
+    internal func xPositionForRightPanel( _ translationInX: CGFloat) -> CGFloat {
+
+        let widthOfView = view.frame.size.width
+
+        if state == .center {
+
+            let newPosition = widthOfView + translationInX
+            if newPosition > widthOfView { return widthOfView }
+            else if newPosition < (widthOfView - widthForRightPanelVC) { return (widthOfView - widthForRightPanelVC) }
+            else { return newPosition }
+        }
+        else if state == .right {
+
+            let leftBareer = widthOfView - widthForRightPanelVC
+            let newPosition = leftBareer + translationInX
+
+            if translationInX < 0.0 { return leftBareer }
+            else if translationInX > widthForRightPanelVC { return widthOfView }
+            else { return newPosition }
         }
         else { return 0.0 }
     }
