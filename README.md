@@ -21,7 +21,7 @@
 ---
 
 - [x] Right panel position (front/back) to center panel
-- [x] Dark Overlay on right panel, if left panel position is front
+- [x] Dark Overlay on right panel, if right panel position is front
 
 
 ### Right Panel Position
