@@ -25,8 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rightMenuVC: RightMenuVC = mainStoryboard.instantiateViewController(withIdentifier: "RightMenuVC") as! RightMenuVC
         let centerVC: CenterVC = mainStoryboard.instantiateViewController(withIdentifier: "CenterVC1") as! CenterVC
         let centerNavVC = UINavigationController(rootViewController: centerVC)
+  
         
-        let rootController: FAPanelController = window?.rootViewController as! FAPanelController
+        //  Case 1: With Code only approah
+
+        let rootController = FAPanelController()
+
+
+        //  Case 2: With Xtoryboards, Xibs And NSCoder
+
+        //        let rootController: FAPanelController = window?.rootViewController as! FAPanelController
+
 
         
         rootController.configs.rightPanelWidth = 80
@@ -38,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //        rootController.leftPanelPosition = .front
         //        rootController.rightPanelPosition = .front
 
+
+        //  For Case 1 only
+        window?.rootViewController = rootController
+        
         return true
     }
 

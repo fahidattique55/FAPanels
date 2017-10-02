@@ -17,6 +17,35 @@
 [![Platform](https://img.shields.io/cocoapods/p/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
 
 
+
+## New Features Added ( > 0.3.1 only)
+---
+
+- [x] Create as many instances of FAPanelController with code only
+- [x] Configure its left, right and center panels as you want
+- [x] Update the Root Window Controller with any FAPanelController object
+
+
+### Usage
+
+```swift
+
+//  Create FAPanelController object with out any NSCoder, Storyboards and Nib files
+
+let rootController = FAPanelController()
+
+//  Configure the panels as you want and assign this panel controller to root controller of window.
+
+window?.rootViewController = rootController
+
+
+//  You can also set window's root controller to any FAPanelController object with different FAPanelConfigurations at any time.
+
+```
+
+
+
+
 ## New Features Added ( > 0.3.0 only)
 ---
 
