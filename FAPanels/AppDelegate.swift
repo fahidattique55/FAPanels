@@ -27,25 +27,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let centerNavVC = UINavigationController(rootViewController: centerVC)
   
         
-        //  Case 1: With Code only approah
+        /*
 
-        let rootController = FAPanelController()
+         //  Case 1: With Code only approah
+         let rootController = FAPanelController()
+
+        */
 
 
         //  Case 2: With Xtoryboards, Xibs And NSCoder
+        let rootController: FAPanelController = window?.rootViewController as! FAPanelController
 
-        //        let rootController: FAPanelController = window?.rootViewController as! FAPanelController
-
-
-        
         rootController.configs.rightPanelWidth = 80
         rootController.configs.bounceOnRightPanelOpen = false
         _ = rootController.center(centerNavVC).left(leftMenuVC).right(rightMenuVC)
 
-        //        _ = rootController.center(centerNavVC).letf(leftMenuVC)
-        //        _ = rootController.center(centerNavVC).right(rightMenuVC)
-        //        rootController.leftPanelPosition = .front
-        //        rootController.rightPanelPosition = .front
+        /*
+         _ = rootController.center(centerNavVC).letf(leftMenuVC)
+         _ = rootController.center(centerNavVC).right(rightMenuVC)
+         rootController.leftPanelPosition = .front
+         rootController.rightPanelPosition = .front
+         */
 
 
         //  For Case 1 only

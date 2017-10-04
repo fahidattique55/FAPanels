@@ -121,7 +121,7 @@ open class FAPanelController: UIViewController {
 
     // MARK:- Life Cycle
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     
