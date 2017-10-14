@@ -17,6 +17,11 @@
 [![Platform](https://img.shields.io/cocoapods/p/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
 
 
+## Apps Using FAPanels
+---
+
+- RepairDesk (https://itunes.apple.com/pk/app/repairdesk-pos-register/id1246495656?mt=8)
+
 
 ## New Features Added ( > 0.3.1 only)
 ---
