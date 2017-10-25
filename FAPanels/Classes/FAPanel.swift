@@ -108,7 +108,19 @@ open class FAPanelController: UIViewController {
         openCenter(animated: animated, shouldBounce: configs.bounceOnCenterPanelOpen)
     }
 
-    
+
+    open func closeLeft() {
+        
+        if isLeftPanelOnFront { slideLeftPanelOut(animated: true) }
+        else { openCenter(animated: true) }
+    }
+
+    open func closeRight() {
+        
+        if isRightPanelOnFront { slideRightPanelOut(animated: true) }
+        else { openCenter(animated: true) }
+    }
+
     
 
     
