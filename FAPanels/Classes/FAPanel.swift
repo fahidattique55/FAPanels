@@ -73,14 +73,14 @@ open class FAPanelController: UIViewController {
     }
 
 
-    open func left( _ controller: UIViewController) -> FAPanelController {
+    open func left( _ controller: UIViewController?) -> FAPanelController {
         
         leftPanelVC = controller
         return self
     }
 
     
-    open func right( _ controller: UIViewController) -> FAPanelController {
+    open func right( _ controller: UIViewController?) -> FAPanelController {
         
         rightPanelVC = controller
         return self
