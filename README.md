@@ -23,6 +23,17 @@
 - RepairDesk (https://itunes.apple.com/pk/app/repairdesk-pos-register/id1246495656?mt=8)
 
 
+
+## New Features Added ( > 0.3.5 only)
+---
+
+- [x] Execute a completion closure for any state of side menus, right after the animation of changing center panelVC
+- [x] Smooth logout feature ( i.e: When user taps on logout button/cell in the side menu, you will change the center panelVC and then can set left panelVC  to "nil" as you don't want the user to use side menus in login/signup stories)
+- [x] Change Left/Right menus with smooth center panelVC animations
+
+
+
+
 ## New Features Added ( > 0.3.1 only)
 ---
 

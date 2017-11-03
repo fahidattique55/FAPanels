@@ -65,6 +65,10 @@ open class FAPanelController: UIViewController {
     
     open var configs = FAPanelConfigurations()
 
+    
+    open func center( _ controller: UIViewController, afterThat completion: (() -> Void)?) {
+        setCenterPanelVC(controller, afterThat: completion)
+    }
 
     open func center( _ controller: UIViewController) -> FAPanelController {
         
@@ -105,19 +109,19 @@ open class FAPanelController: UIViewController {
             centerPanelHidden = false
             unhideCenterPanel()
         }
-        openCenter(animated: animated, shouldBounce: configs.bounceOnCenterPanelOpen)
+        openCenter(animated: animated, shouldBounce: configs.bounceOnCenterPanelOpen, afterThat: nil)
     }
 
 
     open func closeLeft() {
         
-        if isLeftPanelOnFront { slideLeftPanelOut(animated: true) }
+        if isLeftPanelOnFront { slideLeftPanelOut(animated: true, afterThat: nil) }
         else { openCenter(animated: true) }
     }
 
     open func closeRight() {
         
-        if isRightPanelOnFront { slideRightPanelOut(animated: true) }
+        if isRightPanelOnFront { slideRightPanelOut(animated: true, afterThat: nil) }
         else { openCenter(animated: true) }
     }
 
@@ -367,6 +371,7 @@ open class FAPanelController: UIViewController {
     }
     
     
+    
     internal var _centerPanelVC: UIViewController? = nil
     internal var centerPanelVC : UIViewController? {
         
@@ -374,61 +379,67 @@ open class FAPanelController: UIViewController {
             return _centerPanelVC
         }
         set{
-            
-            let previousVC: UIViewController? = _centerPanelVC
-            
-            if _centerPanelVC != newValue {
-                
-                _centerPanelVC?.removeObserver(self, forKeyPath: keyPathOfView)
-                _centerPanelVC = newValue
-                _centerPanelVC!.addObserver(self, forKeyPath: keyPathOfView, options: NSKeyValueObservingOptions.initial, context: &FAPanelController.kvoContext)
-                
-                if state == .center {
-                    visiblePanelVC = _centerPanelVC
-                }
-            }
-            
-            if isViewLoaded && state == .center {
-                swapCenter(animated: configs.changeCenterPanelAnimated, FromVC: previousVC, withVC: _centerPanelVC!)
-            }
-            else if (self.isViewLoaded) {
-
-                if state == .left {
-                    
-                    if isLeftPanelOnFront {
-                        
-                        swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
-                        slideLeftPanelOut(animated: true)
-                        return
-                    }
-                }
-                else if state == .right {
-                    
-                    if isRightPanelOnFront {
-                        
-                        swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
-                        slideRightPanelOut(animated: true)
-                        return
-                    }
-                }
-
-                
-                UIView.animate(withDuration: 0.2, animations: {
-                    
-                    if self.configs.bounceOnCenterPanelChange {
-                        let x: CGFloat  = (self.state == .left) ? self.view.bounds.size.width : -self.view.bounds.size.width
-                        self.centeralPanelSlidingFrame.origin.x = x
-                    }
-                    self.centerPanelContainer.frame = self.centeralPanelSlidingFrame
-                    
-                }, completion: { (finised) in
-  
-                    self.swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
-                    self.openCenter(animated: true, shouldBounce: false)
-                })
-            }
+            setCenterPanelVC(newValue, afterThat: nil)
         }
     }
+    
+    internal func setCenterPanelVC( _ newValue: UIViewController?, afterThat completion: (() -> Void)? = nil) {
+        
+        let previousVC: UIViewController? = _centerPanelVC
+        
+        if _centerPanelVC != newValue {
+            
+            _centerPanelVC?.removeObserver(self, forKeyPath: keyPathOfView)
+            _centerPanelVC = newValue
+            _centerPanelVC!.addObserver(self, forKeyPath: keyPathOfView, options: NSKeyValueObservingOptions.initial, context: &FAPanelController.kvoContext)
+            
+            if state == .center {
+                visiblePanelVC = _centerPanelVC
+            }
+        }
+        
+        if isViewLoaded && state == .center {
+            swapCenter(animated: configs.changeCenterPanelAnimated, FromVC: previousVC, withVC: _centerPanelVC!)
+        }
+        else if (self.isViewLoaded) {
+            
+            if state == .left {
+                
+                if isLeftPanelOnFront {
+                    
+                    swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
+                    slideLeftPanelOut(animated: true, afterThat: completion)
+                    return
+                }
+            }
+            else if state == .right {
+                
+                if isRightPanelOnFront {
+                    
+                    swapCenter(animated: false, FromVC: previousVC, withVC: self._centerPanelVC)
+                    slideRightPanelOut(animated: true, afterThat: completion)
+                    return
+                }
+            }
+            
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                
+                if self.configs.bounceOnCenterPanelChange {
+                    let x: CGFloat  = (self.state == .left) ? self.view.bounds.size.width : -self.view.bounds.size.width
+                    self.centeralPanelSlidingFrame.origin.x = x
+                }
+                self.centerPanelContainer.frame = self.centeralPanelSlidingFrame
+                
+            }, completion: { (finised) in
+                
+                self.swapCenter(animated: false,FromVC: previousVC, withVC: self._centerPanelVC)
+                self.openCenter(animated: true, shouldBounce: false, afterThat: completion)
+            })
+        }
+    }
+
+    
     
     
     

@@ -478,7 +478,7 @@ extension FAPanelController {
     }
     
     
-    internal func openCenter(animated: Bool, shouldBounce bounce: Bool) {
+    internal func openCenter(animated: Bool, shouldBounce bounce: Bool, afterThat completion: (() -> Void)?) {
         
         state = .center
         _ = updateCenterPanelSlidingFrame()
@@ -487,6 +487,7 @@ extension FAPanelController {
                 self.leftPanelContainer.isHidden = true
                 self.rightPanelContainer.isHidden = true
                 self.unloadPanels()
+                completion?()
             })
         }
         else {
@@ -494,6 +495,7 @@ extension FAPanelController {
             leftPanelContainer.isHidden = true
             rightPanelContainer.isHidden = true
             unloadPanels()
+            completion?()
         }
         
         tapView = nil
@@ -542,7 +544,7 @@ extension FAPanelController {
     }
 
     
-    internal func slideLeftPanelOut(animated: Bool) {
+    internal func slideLeftPanelOut(animated: Bool, afterThat completion: (() -> Void)?) {
         
         if animated {
             
@@ -558,6 +560,7 @@ extension FAPanelController {
                 self.view.sendSubview(toBack: self.leftPanelContainer)
                 self.unloadPanels()
                 self.state = .center
+                completion?()
             })
         }
         else {
@@ -568,6 +571,7 @@ extension FAPanelController {
             view.sendSubview(toBack: leftPanelContainer)
             unloadPanels()
             state = .center
+            completion?()
         }
         
         tapView = nil
@@ -601,7 +605,7 @@ extension FAPanelController {
     }
     
     
-    internal func slideRightPanelOut(animated: Bool) {
+    internal func slideRightPanelOut(animated: Bool, afterThat completion: (() -> Void)?) {
         
         if animated {
             
@@ -617,6 +621,7 @@ extension FAPanelController {
                 self.view.sendSubview(toBack: self.rightPanelContainer)
                 self.unloadPanels()
                 self.state = .center
+                completion?()
             })
         }
         else {
@@ -627,6 +632,7 @@ extension FAPanelController {
             view.sendSubview(toBack: rightPanelContainer)
             unloadPanels()
             state = .center
+            completion?()
         }
         
         tapView = nil

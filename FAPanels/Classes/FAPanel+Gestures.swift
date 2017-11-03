@@ -195,7 +195,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     internal func slideLeftPanelOutIfNeeded() {
         
         if state == .center && isLeftPanelOnFront {
-            if paningStartDirection == .right { slideLeftPanelOut(animated: true) }
+            if paningStartDirection == .right { slideLeftPanelOut(animated: true, afterThat: nil) }
         }
     }
 
@@ -203,7 +203,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     internal func slideRightPanelOutIfNeeded() {
         
         if state == .center && isRightPanelOnFront {
-            if paningStartDirection == .left { slideRightPanelOut(animated: true) }
+            if paningStartDirection == .left { slideRightPanelOut(animated: true, afterThat: nil) }
         }
     }
 
@@ -275,20 +275,20 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         case .left:
             
             if isLeftPanelOnFront {
-                slideLeftPanelOut(animated: true)
+                slideLeftPanelOut(animated: true, afterThat: nil)
             }
             else {
-                openCenter(animated: true, shouldBounce: configs.bounceOnLeftPanelClose)
+                openCenter(animated: true, shouldBounce: configs.bounceOnLeftPanelClose, afterThat: nil)
             }
             break
             
         case .right:
 
             if isRightPanelOnFront {
-                slideRightPanelOut(animated: true)
+                slideRightPanelOut(animated: true, afterThat: nil)
             }
             else {
-                openCenter(animated: true, shouldBounce: configs.bounceOnRightPanelClose)
+                openCenter(animated: true, shouldBounce: configs.bounceOnRightPanelClose, afterThat: nil)
             }
             break
         }
@@ -310,7 +310,7 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         switch state {
             
         case .center:
-            openCenter(animated: true, shouldBounce: false)
+            openCenter(animated: true, shouldBounce: false, afterThat: nil)
             break
             
         case .left:
@@ -346,17 +346,17 @@ extension FAPanelController: UIGestureRecognizerDelegate {
         
         if state == .left {
             if isLeftPanelOnFront {
-                slideLeftPanelOut(animated: true)
+                slideLeftPanelOut(animated: true, afterThat: nil)
                 return
             }
         }
         else if state == .right {
             if isRightPanelOnFront {
-                slideRightPanelOut(animated: true)
+                slideRightPanelOut(animated: true, afterThat: nil)
                 return
             }
         }
 
-        openCenter(animated: true, shouldBounce: false)
+        openCenter(animated: true, shouldBounce: false, afterThat: nil)
     }
 }

@@ -75,7 +75,21 @@ extension RightMenuVC: UITableViewDelegate, UITableViewDataSource {
         let centerVC: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: identifier)
         let centerNavVC = UINavigationController(rootViewController: centerVC)
         
-        panel!.configs.bounceOnCenterPanelChange = false
-        _ = panel!.center(centerNavVC)
+        panel!.configs.bounceOnCenterPanelChange = true
+        
+        /*
+         // Simple way of changing center PanelVC
+         _ = panel!.center(centerNavVC)
+         */
+        
+        
+        
+        /*
+         New Feature Added, You can change the center panelVC and after completion of the animations you can execute a closure
+         */
+        
+        panel!.center(centerNavVC, afterThat: {
+            print("Executing block after changing center panelVC From Right Menu")
+        })
     }
 }

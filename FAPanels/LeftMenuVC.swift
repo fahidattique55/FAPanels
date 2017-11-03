@@ -89,8 +89,22 @@ extension LeftMenuVC: UITableViewDataSource, UITableViewDelegate {
         let centerNavVC = UINavigationController(rootViewController: centerVC)
         
         panel!.configs.bounceOnCenterPanelChange = true
-        _ = panel!.center(centerNavVC)
 
+        /*
+             // Simple way of changing center PanelVC
+             _ = panel!.center(centerNavVC)
+         */
+
+        
+        
+        /*
+             New Feature Added, You can change the center panelVC and after completion of the animations you can execute a closure
+         */
+        
+        panel!.center(centerNavVC, afterThat: {
+            print("Executing block after changing center panelVC From Left Menu")
+            _ = self.panel!.left(nil)
+        })
     }
 
 }
