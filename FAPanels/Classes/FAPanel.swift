@@ -336,6 +336,9 @@ open class FAPanelController: UIViewController {
                     addChildViewController(_leftPanelVC!)
                     _leftPanelVC!.didMove(toParentViewController: self)
                 }
+                else {
+                    leftPanelContainer.isHidden = true
+                }
                 if state == .left {
                     visiblePanelVC = _leftPanelVC
                 }
@@ -362,6 +365,9 @@ open class FAPanelController: UIViewController {
                 if _rightPanelVC != nil {
                     addChildViewController(_rightPanelVC!)
                     _rightPanelVC?.didMove(toParentViewController: self)
+                }
+                else {
+                    rightPanelContainer.isHidden = true
                 }
                 if state == .right {
                     visiblePanelVC = _rightPanelVC
