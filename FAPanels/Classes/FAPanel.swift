@@ -179,7 +179,6 @@ open class FAPanelController: UIViewController {
         leftPanelContainer.layer.shadowOffset = configs.shadowOffset
         leftPanelContainer.layer.shadowOpacity = configs.shadowOppacity
         leftPanelContainer.layer.shadowPath = shadowPath.cgPath
-
     }
     
     
@@ -483,7 +482,9 @@ open class FAPanelController: UIViewController {
             }
         }
         else {
-            leftPanelContainer.frame = view.bounds
+            if leftPanelContainer != nil {
+                leftPanelContainer.frame = view.bounds
+            }
         }
     }
 
@@ -502,7 +503,10 @@ open class FAPanelController: UIViewController {
             }
         }
         else {
-            rightPanelContainer.frame = view.bounds
+            
+            if rightPanelContainer != nil {
+                rightPanelContainer.frame = view.bounds
+            }
         }
     }
     

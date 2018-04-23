@@ -47,7 +47,6 @@ class LeftMenuVC: UIViewController {
         
         tableView.register(UINib.init(nibName: "LeftMenuCell", bundle: nil), forCellReuseIdentifier: "LeftMenuCell")
     }
-    
 }
 
 
@@ -103,8 +102,7 @@ extension LeftMenuVC: UITableViewDataSource, UITableViewDelegate {
         
         panel!.center(centerNavVC, afterThat: {
             print("Executing block after changing center panelVC From Left Menu")
-            _ = self.panel!.left(nil)
+//            _ = self.panel!.left(nil)
         })
     }
-
 }

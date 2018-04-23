@@ -786,11 +786,24 @@ extension FAPanelController {
             break
             
         case .left:
-            frame.origin.x = widthForLeftPanelVC
+            
+            if leftPanelPosition == .front {
+                frame.origin.x = 0
+            }
+            else {
+                frame.origin.x = widthForLeftPanelVC
+            }
+            
             break
             
         case .right:
-            frame.origin.x = -widthForRightPanelVC
+            
+            if rightPanelPosition == .front {
+                frame.origin.x = 0
+            }
+            else {
+                frame.origin.x = -widthForRightPanelVC
+            }
             break
         }
         

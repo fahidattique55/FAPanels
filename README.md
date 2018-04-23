@@ -21,6 +21,18 @@
 ---
 
 - RepairDesk (https://itunes.apple.com/pk/app/repairdesk-pos-register/id1246495656?mt=8)
+- ScanShake Visitor (https://itunes.apple.com/us/app/scanshake-visitor/id1349888987?mt=8)
+- ScanShake Exhibitor (https://itunes.apple.com/us/app/scanshake-exhibitor/id1349889664?mt=8)
+
+
+
+## Issues Resolved ( > 0.4.0 only)
+---
+
+- [x] Presenting a UINavigation controller distorts the frames of center panel while left panel is open and its state is front, is resolved 
+- [x] Crash when right panel is nil and layout panel containers are updated is resolved
+
+
 
 
 

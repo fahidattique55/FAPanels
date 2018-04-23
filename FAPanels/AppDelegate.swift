@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         rootController.configs.rightPanelWidth = 80
         rootController.configs.bounceOnRightPanelOpen = false
+        
         _ = rootController.center(centerNavVC).left(leftMenuVC).right(rightMenuVC)
 
         /*
