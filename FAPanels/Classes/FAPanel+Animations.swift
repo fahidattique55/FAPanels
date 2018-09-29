@@ -29,7 +29,7 @@ extension FAPanelController {
                     
                     let transitionOption = configs.centerPanelTransitionType.transitionOption()
                     
-                    if transitionOption is UIViewAnimationOptions {
+                    if transitionOption is UIView.AnimationOptions {
                         
                         swap(fromVC, withVC: nextVC)
                         performNativeTransition()
@@ -101,20 +101,20 @@ extension FAPanelController {
     
     private func swap( _ fromVC: UIViewController?, withVC toVC: UIViewController?) {
         
-        fromVC?.willMove(toParentViewController: nil)
+        fromVC?.willMove(toParent: nil)
         fromVC?.view.removeFromSuperview()
-        fromVC?.removeFromParentViewController()
+        fromVC?.removeFromParent()
         loadCenterPanel()
-        addChildViewController(toVC!)
+        addChild(toVC!)
         centerPanelContainer.addSubview(toVC!.view)
-        toVC!.didMove(toParentViewController: self)
+        toVC!.didMove(toParent: self)
     }
     
     
     
     private func performNativeTransition() {
         
-        let transitionOption = configs.centerPanelTransitionType.transitionOption() as! UIViewAnimationOptions
+        let transitionOption = configs.centerPanelTransitionType.transitionOption() as! UIView.AnimationOptions
         UIView.transition(with: view, duration: configs.centerPanelTransitionDuration, options: transitionOption, animations: nil, completion: nil)
     }
     
@@ -396,10 +396,10 @@ extension FAPanelController {
         }
         
         if isLeftPanelOnFront {
-            view.bringSubview(toFront: leftPanelContainer)
+            view.bringSubviewToFront(leftPanelContainer)
         }
         else {
-            view.sendSubview(toBack: leftPanelContainer)
+            view.sendSubviewToBack(leftPanelContainer)
         }
     }
     
@@ -421,10 +421,10 @@ extension FAPanelController {
         }
         
         if isRightPanelOnFront {
-            view.bringSubview(toFront: rightPanelContainer)
+            view.bringSubviewToFront(rightPanelContainer)
         }
         else {
-            view.sendSubview(toBack: rightPanelContainer)
+            view.sendSubviewToBack(rightPanelContainer)
         }
     }
     
@@ -557,7 +557,7 @@ extension FAPanelController {
                 self.leftPanelContainer.frame = frame
             
             }, completion:{ (finished) in
-                self.view.sendSubview(toBack: self.leftPanelContainer)
+                self.view.sendSubviewToBack(self.leftPanelContainer)
                 self.unloadPanels()
                 self.state = .center
                 completion?()
@@ -568,7 +568,7 @@ extension FAPanelController {
             var frame = leftPanelContainer.frame
             frame.origin.x = -widthForLeftPanelVC
             leftPanelContainer.frame = frame
-            view.sendSubview(toBack: leftPanelContainer)
+            view.sendSubviewToBack(leftPanelContainer)
             unloadPanels()
             state = .center
             completion?()
@@ -618,7 +618,7 @@ extension FAPanelController {
                 self.rightPanelContainer.frame = frame
                 
             }, completion:{ (finished) in
-                self.view.sendSubview(toBack: self.rightPanelContainer)
+                self.view.sendSubviewToBack(self.rightPanelContainer)
                 self.unloadPanels()
                 self.state = .center
                 completion?()
@@ -629,7 +629,7 @@ extension FAPanelController {
             var frame = rightPanelContainer.frame
             frame.origin.x = self.view.frame.size.width
             rightPanelContainer.frame = frame
-            view.sendSubview(toBack: rightPanelContainer)
+            view.sendSubviewToBack(rightPanelContainer)
             unloadPanels()
             state = .center
             completion?()

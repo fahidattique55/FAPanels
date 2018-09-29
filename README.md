@@ -25,6 +25,13 @@
 - ScanShake Exhibitor (https://itunes.apple.com/us/app/scanshake-exhibitor/id1349889664?mt=8)
 
 
+## Issues Resolved ( > 0.5.0 only)
+---
+
+- [x] XCode 10 support 
+- [x] Swift 4.2 support
+
+
 
 ## Issues Resolved ( > 0.4.0 only)
 ---

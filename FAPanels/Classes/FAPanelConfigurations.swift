@@ -208,33 +208,33 @@ public enum FAPanelTransitionType: UInt {
             
             
         case .flipFromLeft:
-            return UIViewAnimationOptions.transitionFlipFromLeft
+            return UIView.AnimationOptions.transitionFlipFromLeft
             
         case .flipFromRight:
-            return UIViewAnimationOptions.transitionFlipFromRight
+            return UIView.AnimationOptions.transitionFlipFromRight
             
         case .flipFromTop:
-            return UIViewAnimationOptions.transitionFlipFromTop
+            return UIView.AnimationOptions.transitionFlipFromTop
             
         case .flipFromBottom:
-            return UIViewAnimationOptions.transitionFlipFromBottom
+            return UIView.AnimationOptions.transitionFlipFromBottom
             
             
             
             
             
         case .curlUp:
-            return UIViewAnimationOptions.transitionCurlUp
+            return UIView.AnimationOptions.transitionCurlUp
             
         case .curlDown:
-            return UIViewAnimationOptions.transitionCurlDown
+            return UIView.AnimationOptions.transitionCurlDown
             
             
             
             
             
         case .crossDissolve:
-            return UIViewAnimationOptions.transitionCrossDissolve
+            return UIView.AnimationOptions.transitionCrossDissolve
             
             
             

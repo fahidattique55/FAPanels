@@ -208,7 +208,7 @@ open class FAPanelController: UIViewController {
         view.addSubview(rightPanelContainer)
         state = .center
         swapCenter(animated: false, FromVC: nil, withVC: centerPanelVC)
-        view.bringSubview(toFront: centerPanelContainer)
+        view.bringSubviewToFront(centerPanelContainer)
     }
     
     
@@ -326,14 +326,14 @@ open class FAPanelController: UIViewController {
             
             if newValue != _leftPanelVC {
                 
-                _leftPanelVC?.willMove(toParentViewController: nil)
+                _leftPanelVC?.willMove(toParent: nil)
                 _leftPanelVC?.view.removeFromSuperview()
-                _leftPanelVC?.removeFromParentViewController()
+                _leftPanelVC?.removeFromParent()
                 
                 _leftPanelVC = newValue
                 if _leftPanelVC != nil {
-                    addChildViewController(_leftPanelVC!)
-                    _leftPanelVC!.didMove(toParentViewController: self)
+                    addChild(_leftPanelVC!)
+                    _leftPanelVC!.didMove(toParent: self)
                 }
                 else {
                     leftPanelContainer.isHidden = true
@@ -361,14 +361,14 @@ open class FAPanelController: UIViewController {
             
             if newValue != _rightPanelVC {
                 
-                _rightPanelVC?.willMove(toParentViewController: nil)
+                _rightPanelVC?.willMove(toParent: nil)
                 _rightPanelVC?.view.removeFromSuperview()
-                _rightPanelVC?.removeFromParentViewController()
+                _rightPanelVC?.removeFromParent()
                 
                 _rightPanelVC = newValue
                 if _rightPanelVC != nil {
-                    addChildViewController(_rightPanelVC!)
-                    _rightPanelVC?.didMove(toParentViewController: self)
+                    addChild(_rightPanelVC!)
+                    _rightPanelVC?.didMove(toParent: self)
                 }
                 else {
                     rightPanelContainer.isHidden = true

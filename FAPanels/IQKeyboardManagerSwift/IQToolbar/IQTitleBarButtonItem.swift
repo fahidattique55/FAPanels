@@ -40,7 +40,7 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
 
     override open var title: String? {
         didSet {
-                _titleButton?.setTitle(title, for: UIControlState())
+                _titleButton?.setTitle(title, for: UIControl.State())
         }
     }
     
@@ -51,9 +51,9 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         
         didSet {
             if let color = selectableTextColor {
-                _titleButton?.setTitleColor(color, for:UIControlState())
+                _titleButton?.setTitleColor(color, for:UIControl.State())
             } else {
-                _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
+                _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControl.State())
             }
         }
     }
@@ -89,7 +89,7 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
     
     convenience init(title : String?) {
 
-        self.init(title: nil, style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+        self.init(title: nil, style: UIBarButtonItem.Style.plain, target: nil, action: nil)
         
         _titleView = UIView()
         _titleView?.backgroundColor = UIColor.clear
@@ -98,10 +98,10 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         _titleButton?.isEnabled = false
         _titleButton?.titleLabel?.numberOfLines = 3
         _titleButton?.setTitleColor(UIColor.lightGray, for:.disabled)
-        _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControlState())
+        _titleButton?.setTitleColor(UIColor.init(red: 0.0, green: 0.5, blue: 1.0, alpha: 1), for:UIControl.State())
         _titleButton?.backgroundColor = UIColor.clear
         _titleButton?.titleLabel?.textAlignment = .center
-        _titleButton?.setTitle(title, for: UIControlState())
+        _titleButton?.setTitle(title, for: UIControl.State())
         titleFont = UIFont.systemFont(ofSize: 13.0)
         _titleButton?.titleLabel?.font = self.titleFont
         _titleView?.addSubview(_titleButton!)
