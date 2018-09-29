@@ -1,6 +1,7 @@
 Pod::Spec.new do |s|
+  s.swift_version    = '4.2'
   s.name             = 'FAPanels'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Swift Panels with Animations'
 
   s.description      = <<-DESC
