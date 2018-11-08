@@ -70,6 +70,7 @@ open class FAPanelController: UIViewController {
         setCenterPanelVC(controller, afterThat: completion)
     }
 
+    @discardableResult
     open func center( _ controller: UIViewController) -> FAPanelController {
         
         centerPanelVC = controller
@@ -77,6 +78,7 @@ open class FAPanelController: UIViewController {
     }
 
 
+    @discardableResult
     open func left( _ controller: UIViewController?) -> FAPanelController {
         
         leftPanelVC = controller
@@ -84,6 +86,7 @@ open class FAPanelController: UIViewController {
     }
 
     
+    @discardableResult
     open func right( _ controller: UIViewController?) -> FAPanelController {
         
         rightPanelVC = controller
