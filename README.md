@@ -20,7 +20,7 @@
 
 
 
-## Apps Using FAPanels
+## Famous Apps Using FAPanels
 ---
 
 - FanTazTech (https://itunes.apple.com/us/app/fantaztech/id1334853147?mt=8)
