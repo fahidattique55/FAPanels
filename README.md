@@ -20,6 +20,10 @@
 ## Apps Using FAPanels
 ---
 
+- FanTazTech (https://itunes.apple.com/us/app/fantaztech/id1334853147?mt=8)
+- FTT Tech (https://itunes.apple.com/us/app/ftt-tech/id1376054178?mt=8)
+- SoleLinks (https://itunes.apple.com/us/app/sole-links/id1434352524?mt=8)
+- LOGX (https://itunes.apple.com/us/app/l-o-g-x/id1398600417?mt=8&ign-mpt=uo%3D4)
 - RepairDesk (https://itunes.apple.com/pk/app/repairdesk-pos-register/id1246495656?mt=8)
 - ScanShake Visitor (https://itunes.apple.com/us/app/scanshake-visitor/id1349888987?mt=8)
 - ScanShake Exhibitor (https://itunes.apple.com/us/app/scanshake-exhibitor/id1349889664?mt=8)
