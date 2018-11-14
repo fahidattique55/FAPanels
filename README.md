@@ -15,6 +15,8 @@
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat.svg)](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat.svg)
 [![Platform](https://img.shields.io/cocoapods/p/FAPanels.svg?style=flat)](http://cocoapods.org/pods/FAPanels)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/FAPanels.svg)](http://cocoapods.org/pods/FAPanels)
+
 
 
 ## Apps Using FAPanels
