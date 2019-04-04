@@ -522,7 +522,6 @@ open class FAPanelController: UIViewController {
     
     internal var _tapView: UIView? = nil
     internal var tapView: UIView? {
-        
         get{
             return _tapView
         }
@@ -532,12 +531,10 @@ open class FAPanelController: UIViewController {
                 _tapView = newValue
                 if _tapView != nil {
                     
-                    if configs.showDarkOverlayUnderLeftPanelOnTop && leftPanelPosition == .front && state == .left
-                    {
+                    if configs.showDarkOverlayUnderLeftPanelOnTop && leftPanelPosition == .front && state == .left {
                         _tapView?.backgroundColor = configs.darkOverlayUnderLeftPanelOnTopColor
                     }
-                    else if configs.showDarkOverlayUnderRightPanelOnTop && rightPanelPosition == .front && state == .right
-                    {
+                    else if configs.showDarkOverlayUnderRightPanelOnTop && rightPanelPosition == .front && state == .right {
                         _tapView?.backgroundColor = configs.darkOverlayUnderRightPanelOnTopColor
                     }
 
