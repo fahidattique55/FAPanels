@@ -90,6 +90,54 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     }
     
     
+
+
+
+
+
+
+
+    //  Handle Opacity Tap View
+    
+    internal func handleTapViewOpacity() {
+        
+        if state == .left && isLeftPanelOnFront {
+            handleTapViewOpacityFromLeftPanelContainer()
+        }
+        else if state == .center && isLeftPanelOnFront && (paningStartDirection == .right) {
+            handleTapViewOpacityFromLeftPanelContainer()
+        }
+        else if state == .right && isRightPanelOnFront {
+            handleTapViewOpacityFromRightPanelContainer()
+        }
+        else if state == .center && isRightPanelOnFront && (paningStartDirection == .left) {
+            handleTapViewOpacityFromRightPanelContainer()
+        }
+        else {
+            handleTapViewOpacityFromCenterPanelContainer()
+        }
+    }
+    
+    internal func handleTapViewOpacityFromLeftPanelContainer() {
+        
+        print(abs((leftPanelContainer.frame.origin.x+leftPanelContainer.frame.width)/leftPanelContainer.frame.width))
+        tapView?.alpha = abs((leftPanelContainer.frame.origin.x+leftPanelContainer.frame.width)/leftPanelContainer.frame.width)
+    }
+    
+    internal func handleTapViewOpacityFromRightPanelContainer() {
+        
+        print(abs((centerPanelContainer.frame.width - rightPanelContainer.frame.origin.x)/rightPanelContainer.frame.width))
+        tapView?.alpha = abs((centerPanelContainer.frame.width - rightPanelContainer.frame.origin.x)/rightPanelContainer.frame.width)
+    }
+    
+    internal func handleTapViewOpacityFromCenterPanelContainer() {
+        
+        print(abs(centerPanelContainer.frame.origin.x/centerPanelContainer.frame.width))
+        tapView?.alpha = abs(centerPanelContainer.frame.origin.x/centerPanelContainer.frame.width)
+    }
+    
+
+    
     
     
     
@@ -100,7 +148,6 @@ extension FAPanelController: UIGestureRecognizerDelegate {
     
     //  Handle Pan Gesture
 
-    
     @objc internal func handlePan(_ gesture: UIGestureRecognizer) {
         
         if !configs.canRecognizePanGesture { return }
@@ -110,6 +157,10 @@ extension FAPanelController: UIGestureRecognizerDelegate {
             let pan: UIPanGestureRecognizer = gesture as! UIPanGestureRecognizer
             let translation: CGPoint = pan.translation(in: centerPanelContainer)
 
+            if configs.shouldAnimateWithPan {
+                handleTapViewOpacity()
+            }
+            
             if pan.state == .began {
                 
                 paningStartDirection = translation.x < 0 ? .left : .right

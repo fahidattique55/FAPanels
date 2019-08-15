@@ -107,6 +107,9 @@ extension FAPanelController {
         loadCenterPanel()
         addChild(toVC!)
         centerPanelContainer.addSubview(toVC!.view)
+        if tapView != nil {
+            centerPanelContainer.bringSubviewToFront(tapView!)
+        }
         toVC!.didMove(toParent: self)
     }
     
@@ -498,7 +501,9 @@ extension FAPanelController {
             completion?()
         }
         
-        tapView = nil
+//        tapView = nil
+        tapView?.alpha = 0.0
+
         handleScrollsToTopForContainers(centerEnabled: true, leftEnabled: false, rightEnabled: false)
     }
     
@@ -514,7 +519,8 @@ extension FAPanelController {
         else {
             updateCenterPanelContainer()
         }
-        tapView = UIView()
+//        tapView = UIView()
+        handleTapViewOpacity()
     }
 
     
@@ -540,7 +546,8 @@ extension FAPanelController {
             self.leftPanelContainer.frame = frame
         }
         
-        tapView = UIView()
+//        tapView = UIView()
+        handleTapViewOpacity()
     }
 
     
@@ -574,7 +581,9 @@ extension FAPanelController {
             completion?()
         }
         
-        tapView = nil
+//        tapView = nil
+        tapView?.alpha = 0.0
+
         handleScrollsToTopForContainers(centerEnabled: true, leftEnabled: false, rightEnabled: false)
     }
 
@@ -601,7 +610,8 @@ extension FAPanelController {
             self.rightPanelContainer.frame = frame
         }
         
-        tapView = UIView()
+//        tapView = UIView()
+        handleTapViewOpacity()
     }
     
     
@@ -635,7 +645,9 @@ extension FAPanelController {
             completion?()
         }
         
-        tapView = nil
+//        tapView = nil
+        tapView?.alpha = 0.0
+
         handleScrollsToTopForContainers(centerEnabled: true, leftEnabled: false, rightEnabled: false)
     }
 

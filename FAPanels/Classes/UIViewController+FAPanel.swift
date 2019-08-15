@@ -88,7 +88,4 @@ public extension UIViewController {
         
         return snapshot
     }
-    
-    
-
 }

@@ -152,18 +152,20 @@ open class FAPanelConfigurations: NSObject {
     
     
     
-    // Display a dakr overlay over the center panel when leftpanelposition = .front
-    
+    @available(*,deprecated, message: "Please use 'shouldAnimateWithPan' & 'colorForTapView' for overlays while panning.")
     open var showDarkOverlayUnderLeftPanelOnTop : Bool = true
+    @available(*,deprecated, message: "Please use 'shouldAnimateWithPan' & 'colorForTapView' for overlays while panning.")
     open var darkOverlayUnderLeftPanelOnTopColor : UIColor = UIColor.black.withAlphaComponent(0.5)
-
-    
-    
-    // Display a dakr overlay over the center panel when rightpanelposition = .front
-    
+    @available(*,deprecated, message: "Please use 'shouldAnimateWithPan' & 'colorForTapView' for overlays while panning.")
     open var showDarkOverlayUnderRightPanelOnTop : Bool = true
+    @available(*,deprecated, message: "Please use 'shouldAnimateWithPan' & 'colorForTapView' for overlays while panning.")
     open var darkOverlayUnderRightPanelOnTopColor : UIColor = UIColor.black.withAlphaComponent(0.5)
 
+    
+    // Tap View Properties
+
+    open var colorForTapView: UIColor = UIColor.black.withAlphaComponent(0.35)
+    open var shouldAnimateWithPan: Bool = true
 }
 
 
