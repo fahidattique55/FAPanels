@@ -32,6 +32,14 @@
 - ScanShake Exhibitor (https://itunes.apple.com/us/app/scanshake-exhibitor/id1349889664?mt=8)
 
 
+## New Features Added
+---
+
+- [x] Swift Package Manager Support Added
+
+
+
+
 ## Change Color Of Center Panel While Panning
 ---
 
