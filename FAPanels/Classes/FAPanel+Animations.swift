@@ -838,7 +838,7 @@ extension FAPanelController {
     
     internal func handleScrollsToTopForContainers(centerEnabled: Bool, leftEnabled:Bool, rightEnabled:Bool) {
         
-        if (UI_USER_INTERFACE_IDIOM() == .phone) {
+        if UIDevice().userInterfaceIdiom == .phone {
             
             _ = handleScrollsToTop(enabled: centerEnabled, forView: centerPanelContainer)
             _ = handleScrollsToTop(enabled: leftEnabled, forView: leftPanelContainer)

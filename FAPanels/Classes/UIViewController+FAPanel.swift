@@ -80,8 +80,13 @@ public extension UIViewController {
         UIColor.black.set()
         context.fill(screenRect);
         
-        let window: UIWindow = UIApplication.shared.keyWindow!
-        window.layer.render(in: context)
+        var window: UIWindow? = nil
+        if #available(iOS 13.0, *) {
+            window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        } else {
+            window = UIApplication.shared.keyWindow!
+        }
+        window?.layer.render(in: context)
 
         let snapshot: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
